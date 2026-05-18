@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('usuario_id')
                 ->constrained('users')
                 ->onDelete('cascade');
+
             $table->foreignId('producto_id')
                 ->constrained('productos')
                 ->onDelete('cascade');
+                
             $table->date('fecha_recogida')->nullable();
             $table->string('estado')->default('solicitada');
             $table->timestamps();

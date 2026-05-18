@@ -1,0 +1,152 @@
+/* ===== PAGINA CONTACTO ===== */
+.contacto-page {
+  padding: 3.5em 5em 5em;
+  background: var(--color-background);
+  min-height: 70vh;
+}
+
+/* ===== CABECERA ===== */
+.contacto-cabecera {
+  margin-bottom: 2.5em;
+}
+
+.contacto-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.688em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-golden);
+  margin-bottom: 0.5em;
+}
+
+.contacto-titulo {
+  font-size: 2.5em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+  line-height: 1.1;
+}
+
+/* ===== LAYOUT ===== */
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4em;
+  align-items: start;
+}
+
+/* ===== INFO ===== */
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.contacto-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.contacto-bloque:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contacto-bloque-titulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.688em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-golden);
+  margin-bottom: 0.25em;
+}
+
+.contacto-dato {
+  font-family: 'Jost', sans-serif;
+  font-size: 1em;
+  color: var(--color-espresso);
+  font-weight: 400;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+a.contacto-dato:hover {
+  color: var(--color-golden);
+}
+
+.contacto-dato-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+}
+
+.contacto-nota {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: 0.25em;
+}
+
+/* ===== REDES ===== */
+.contacto-redes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  margin-top: 0.25em;
+}
+
+.contacto-red {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-espresso);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contacto-red:hover {
+  color: var(--color-golden);
+}
+
+/* ===== MAPA ===== */
+.contacto-mapa-wrapper {
+  position: sticky;
+  top: 2em;
+}
+
+.contacto-mapa {
+  width: 100%;
+  height: 32em;
+  border: none;
+  filter: grayscale(20%);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 53em) {
+  .contacto-page {
+    padding: 2em 1.5em 3em;
+  }
+
+  .contacto-titulo {
+    font-size: 1.8em;
+  }
+
+  .contacto-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5em;
+  }
+
+  .contacto-mapa-wrapper {
+    position: static;
+  }
+
+  .contacto-mapa {
+    height: 20em;
+  }
+}

@@ -1,0 +1,811 @@
+/* ===== CARGANDO ===== */
+.detalle-cargando {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  padding: 5em 2.5em;
+  text-align: center;
+}
+
+/* ===== MIGAS DE PAN ===== */
+.detalle-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 1.25em 3.75em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.detalle-breadcrumb a {
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+}
+
+.detalle-breadcrumb a:hover {
+  color: var(--color-espresso);
+}
+
+.breadcrumb-separador {
+  color: var(--color-golden);
+}
+
+.breadcrumb-actual {
+  color: var(--color-espresso);
+}
+
+/* ===== DETALLE PRINCIPAL ===== */
+.detalle-main {
+  display: grid;
+  grid-template-columns: 0.7fr 0.9fr;
+  gap: 6.25em;
+  padding: 3em 8em;
+}
+
+/* ===== GALERIA ===== */
+.detalle-galeria {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+
+.detalle-imagen-principal {
+  position: relative;
+  /* aspect-ratio: 3/4; */
+  overflow: hidden;
+  background: var(--color-border-light);
+}
+
+.detalle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalle-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-border-light);
+}
+
+/* ===== BOTON ZOOM ===== */
+.galeria-zoom-btn {
+  position: absolute;
+  top: 0.75em;
+  left: 0.75em;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 2.2em;
+  height: 2.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--color-espresso);
+  z-index: 2;
+}
+
+.galeria-zoom-btn:hover {
+  background: #fff;
+}
+
+/* ===== BOTONES GALERIA ===== */
+.galeria-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.603);
+  border: none;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.5em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  color: var(--color-espresso);
+}
+
+.galeria-btn:hover {
+  background: rgb(255, 255, 255);
+}
+
+.galeria-btn-prev {
+  left: 0.75em;
+}
+
+.galeria-btn-next {
+  right: 0.75em;
+}
+
+/* ===== MINIATURAS ===== */
+.detalle-miniaturas {
+  display: flex;
+  gap: 0.5em;
+}
+
+.detalle-miniatura {
+  width: 4.375em;
+  height: 5.625em;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.detalle-miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.miniatura-activa {
+  border-color: var(--color-espresso);
+}
+
+/* ===== INFO PRODUCTO ===== */
+.detalle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.detalle-nombre {
+  font-size: 2.625em;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-espresso);
+  line-height: 1.1;
+}
+
+.detalle-precio {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.5em;
+  font-weight: 300;
+  color: var(--color-golden);
+}
+
+.detalle-descripcion {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  line-height: 1.9;
+}
+
+/* ===== ACORDEONES ===== */
+.detalle-acordeones {
+  display: flex;
+  flex-direction: column;
+}
+
+.acordeon-group {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.acordeon-group:last-child {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.acordeon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  transition: color 0.15s;
+}
+
+.acordeon-header:hover {
+  color: var(--color-espresso);
+}
+
+.acordeon-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+  color: var(--color-espresso);
+}
+
+.acordeon-header svg {
+  transition: transform 0.2s ease;
+}
+
+.chevron-up {
+  transform: rotate(180deg);
+}
+
+.acordeon-content {
+  padding: 0 0 1em 1.625em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== BOTONES ===== */
+.detalle-botones {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.5em;
+}
+
+/* ===== MAS PRODUCTOS ===== */
+.detalle-mas-productos {
+  padding: 3.75em;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.mas-productos-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 13.75em));
+  gap: 1.5em;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-cerrar {
+  position: absolute;
+  top: 1.25em;
+  right: 1.25em;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.75em;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  z-index: 1001;
+}
+
+.lightbox-cerrar:hover {
+  opacity: 1;
+}
+
+.lightbox-contenido {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+}
+
+.lightbox-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 2.5em;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+.lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-btn-prev {
+  left: -3em;
+}
+
+.lightbox-btn-next {
+  right: -3em;
+}
+
+.lightbox-contador {
+  position: absolute;
+  bottom: -2em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 53em) {
+  .detalle-breadcrumb {
+    padding: 1em 1.25em;
+  }
+
+  .detalle-main {
+    grid-template-columns: 1fr;
+    gap: 2em;
+    padding: 1.5em;
+  }
+
+  .detalle-galeria {
+    width: 80%;
+  }
+
+  .detalle-nombre {
+    font-size: 1.8em;
+  }
+
+  .detalle-precio {
+    font-size: 1.2em;
+  }
+
+  .detalle-botones,
+  .detalle-botones-disabled {
+    flex-direction: column;
+  }
+
+  .detalle-botones .btn-primary,
+  .detalle-botones .btn-outline-dark,
+  .detalle-botones-disabled .btn-primary,
+  .detalle-botones-disabled .btn-outline-dark {
+    width: 100%;
+    text-align: center;
+  }
+
+  .detalle-mas-productos {
+    padding: 2em 1.25em;
+  }
+
+  .mas-productos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+
+  .lightbox-btn-prev {
+    left: -1.5em;
+  }
+
+  .lightbox-btn-next {
+    right: -1.5em;
+  }
+}
+
+/* ===== MODAL OVERLAY ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ===== MODAL CARD ===== */
+.modal-card {
+  background: #fff;
+  width: 100%;
+  max-width: 28em;
+  position: relative;
+  padding: 2em;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-reserva-card {
+  max-width: 50em;
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+}
+
+.modal-cerrar:hover {
+  color: var(--color-espresso);
+}
+
+.modal-titulo {
+  font-size: 3em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+  margin-bottom: 0.5em;
+}
+
+.modal-texto {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.25em;
+}
+
+/* ===== MODAL NO AUTH ===== */
+.modal-noauth-icon {
+  margin-bottom: 1em;
+}
+
+.modal-noauth-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.modal-noauth-btn {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* ===== MODAL RESERVA - PRODUCTO INFO ===== */
+.modal-producto-info {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.modal-producto-img {
+  width: 5em;
+  height: 6em;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.modal-producto-datos {
+  flex: 1;
+}
+
+.modal-producto-nombre {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.938em;
+  font-weight: 500;
+  color: var(--color-espresso);
+  margin-bottom: 0.25em;
+}
+
+.modal-producto-precio {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-golden);
+  margin-bottom: 0.4em;
+}
+
+.modal-producto-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  color: var(--color-text);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.4em;
+}
+
+.modal-producto-cantidad {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  color: var(--color-text);
+}
+
+.modal-divider {
+  height: 1px;
+  background: var(--color-border-light);
+  margin: 1em 0;
+}
+
+/* ===== CAMPO FECHA ===== */
+.modal-campo {
+  margin-top: 1.5em;
+  margin-bottom: 3em;
+}
+
+.modal-form {
+  display: flex;
+  gap: 4em;
+  align-items: center;
+}
+
+.modal-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  display: block;
+  margin-bottom: 1em;
+}
+
+.modal-reserva-input,
+.modal-alquiler-input {
+  border: 1px solid var(--color-sand);
+  padding: 0.6em 0.8em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  outline: none;
+  margin-bottom: 0.75em;
+  border-radius: 0;
+}
+
+.modal-reserva-input {
+  width: 40%;
+}
+
+
+.modal-alquiler-input {
+  width: 100%;
+}
+
+.modal-reserva-input:focus,
+.modal-alquiler-input:focus {
+  border-color: var(--color-espresso);
+}
+
+.modal-reserva-input:disabled,
+.modal-alquiler-input:disabled {
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+.modal-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.modal-checkbox-label input {
+  margin-top: 0.15em;
+  accent-color: var(--color-espresso);
+  flex-shrink: 0;
+}
+
+.modal-telefono {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-espresso);
+  margin-top: 0.5em;
+  font-weight: 500;
+}
+
+/* ===== COMO FUNCIONA ===== */
+.modal-como-funciona {
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+.modal-como-titulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--color-espresso);
+  margin-bottom: 0.5em;
+  letter-spacing: 0.05em;
+}
+
+.modal-como-paso {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.7em;
+  line-height: 1.5;
+}
+
+/* ===== ERROR ===== */
+.modal-error {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  padding: 0.6em 0.8em;
+  margin-bottom: 1em;
+}
+
+/* ===== BOTONES MODAL ===== */
+.modal-botones {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75em;
+}
+
+.modal-btn {
+  width: 30%;
+  text-align: center;
+  display: block;
+}
+
+/* ===== EXITO ===== */
+.modal-exito {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.modal-exito-icon {
+  width: 3em;
+  height: 3em;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  margin: 0 auto 1em;
+}
+
+/* Fechas alquiler en dos columnas */
+.campos-alquiler {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 40%;
+}
+
+.modal-fechas-alquiler {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 0.75em;
+}
+
+.modal-campo-mitad {
+  flex: 1;
+}
+
+/* Días totales */
+.modal-dias-total {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75em;
+}
+
+.modal-dias-total strong {
+  color: var(--color-espresso);
+}
+
+.detalle-alquilado-aviso {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.detalle-alquilado-aviso .detalle-botones-disabled {
+  display: flex;
+  gap: 1em;
+}
+
+.detalle-alquilado-texto {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  padding: 1em;
+  background-color: var(--color-linen);
+}
+
+.detalle-alquilado-link {
+  color: var(--color-espresso);
+  border-bottom: 1px solid var(--color-golden);
+}
+
+.detalle-alquilado-link:hover {
+  color: var(--color-golden);
+}
+
+.detalle-botones button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 40em) {
+  .modal-reserva-card {
+    max-width: 100%;
+  }
+
+  .modal-form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .modal-reserva-input {
+    width: 100%;
+  }
+
+  .campos-alquiler {
+    width: 100%;
+  }
+
+  .modal-botones {
+    flex-direction: column;
+  }
+
+  .modal-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reserva;
+use App\Models\Producto;
 
 class ReservaController extends Controller
 {
@@ -13,6 +14,7 @@ class ReservaController extends Controller
      */
     public function index(Request $request)
     {
+        // mostrar las reservas del usuario autenticado, con la información del producto reservado
         $reservas = Reserva::where('usuario_id', $request->user()->id)
             ->with(['producto'])
             ->get();
@@ -28,21 +30,31 @@ class ReservaController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Solicitar una reserva de un producto
     public function store(Request $request)
     {
         $request->validate([
             'producto_id'    => 'required|exists:productos,id',
             'fecha_recogida' => 'nullable|date|after:today',
         ]);
+
+        $producto = Producto::findOrFail($request->producto_id);
+        if ($producto->estado !== 'disponible') { // solo se pueden reservar productos disponibles
+            return response()->json([
+                'mensaje' => 'Este producto no está disponible para reservar',
+            ], 422);
+        }
+
         $reserva = Reserva::create([
-            'usuario_id'     => $request->user()->id,
+            'usuario_id'     => $request->user()->id, // recoger el id del usuario autenticado
             'producto_id'    => $request->producto_id,
             'fecha_recogida' => $request->fecha_recogida,
-            'estado'         => 'solicitada',
+            'estado'         => 'solicitada', // el estado inicial de la reserva es solicitada
         ]);
+
+        // actualizar el estado del producto señalado a "reservado" (no se verá en la página)
+        $reserva->load('producto');
+        $reserva->producto->update(['estado' => 'reservado']);
 
         return response()->json([
             'mensaje' => 'Reserva solicitada correctamente',
@@ -82,6 +94,7 @@ class ReservaController extends Controller
         //
     }
 
+    // Función para cancelar una reserva (solo si está en estado solicitada o aceptada)
     public function cancelar(Request $request, $id)
     {
         $reserva = Reserva::where('id', $id)
@@ -89,12 +102,17 @@ class ReservaController extends Controller
             ->firstOrFail();
 
         if (!in_array($reserva->estado, ['solicitada', 'aceptada'])) {
+            // solo se pueden cancelar las reservas que estén en estado solicitada o aceptada
             return response()->json([
                 'mensaje' => 'No se puede cancelar esta reserva',
             ], 400);
         }
 
         $reserva->update(['estado' => 'cancelada']);
+
+        // actualizar el estado del producto señalado a "disponible" (se volverá a ver en la página)
+        $reserva->load('producto');
+        $reserva->producto->update(['estado' => 'disponible']);
 
         return response()->json([
             'mensaje' => 'Reserva cancelada correctamente',

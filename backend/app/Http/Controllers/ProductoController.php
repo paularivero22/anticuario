@@ -13,15 +13,15 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Producto::with(['subcategoria.categoria', 'epoca', 'pais', 'imagenPrincipal'])
-            ->where('estado', '!=', 'inactivo');
+        $query = Producto::with(['subcategoria.categoria', 'epoca', 'pais', 'imagenPrincipal']) // solo mostrar productos disponibles o alquilados, no inactivos
+            ->whereIn('estado', ['disponible', 'alquilado']);
 
         // FILTROS
 
         // categoria
-        if ($request->categoria) {
-            $query->whereHas('subcategoria.categoria', function ($q) use ($request) {
-                $q->where('nombre', $request->categoria);
+        if ($request->categoria_id) {
+            $query->whereHas('subcategoria', function ($q) use ($request) {
+                $q->where('categoria_id', $request->categoria_id);
             });
         }
 
@@ -83,13 +83,12 @@ class ProductoController extends Controller
         return response()->json($query->get());
     }
 
-    // obtener los productos destacados rapidamente (usado en la pagina principal)
+    // Obtener los productos destacados rapidamente (usado en la pagina principal)
     public function destacados()
     {
         $productos = Producto::with(['subcategoria.categoria', 'imagenPrincipal'])
             ->where('destacado', true)
-            ->where('estado', '!=', 'inactivo')
-            ->limit(6)
+            ->whereIn('estado', ['disponible', 'alquilado'])
             ->get();
 
         return response()->json($productos);
@@ -111,9 +110,7 @@ class ProductoController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Mostrar un producto por su id, con toda su información (incluyendo subcategoria, categoria, epoca, pais e imagenes)
     public function show(string $id)
     {
         $producto = Producto::with(['subcategoria.categoria', 'epoca', 'pais', 'imagenes'])

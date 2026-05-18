@@ -8,9 +8,7 @@ use App\Models\Epoca;
 
 class EpocaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Solo necesito el index para mostrar las épocas en la página de productos
     public function index()
     {
         return response()->json(Epoca::all());

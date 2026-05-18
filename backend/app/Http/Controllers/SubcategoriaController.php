@@ -8,9 +8,7 @@ use App\Models\Subcategoria;
 
 class SubcategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Solo necesito el index para mostrar las subcategorias de una categoria concreta 
     public function index(Request $request)
     {
         if ($request->categoria_id) {

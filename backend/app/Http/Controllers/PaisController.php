@@ -8,9 +8,7 @@ use App\Models\Pais;
 
 class PaisController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Solo necesito el index para mostrar los países en la página de productos
     public function index()
     {
         return response()->json(Pais::all());

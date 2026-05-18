@@ -1,0 +1,940 @@
+/* ===== PÁGINA ===== */
+.admin-page {
+  min-height: 70vh;
+  padding: 3em 5em 5em;
+  background: var(--color-background);
+}
+
+
+/* ===== CABECERA ===== */
+.admin-cabecera {
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-titulo {
+  font-size: 2.2em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+  margin-bottom: 0.2em;
+}
+
+.admin-subtitulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+}
+
+
+/* ===== LAYOUT ===== */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 14em 1fr;
+  gap: 4em;
+  align-items: start;
+}
+
+
+/* ===== SIDEBAR ===== */
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border-light);
+  padding-right: 2em;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.875em 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-border-light);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+  width: 100%;
+}
+
+.admin-nav-item:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.admin-nav-item:hover {
+  color: var(--color-espresso);
+}
+
+.admin-nav-activo {
+  color: var(--color-espresso);
+  font-weight: 500;
+}
+
+.admin-nav-activo svg {
+  stroke: var(--color-espresso);
+}
+
+
+/* ===== CONTENIDO ===== */
+.admin-contenido {
+  min-height: 20em;
+}
+
+.admin-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.admin-seccion-titulo {
+  font-size: 2em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+}
+
+
+/* ===== MENSAJES ===== */
+.admin-exito {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: #27ae60;
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  padding: 0.6em 0.9em;
+}
+
+.admin-error {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  padding: 0.6em 0.9em;
+}
+
+.admin-cargando,
+.admin-vacio {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+}
+
+
+/* ===== INPUTS ===== */
+.admin-input {
+  border: 1px solid var(--color-sand);
+  padding: 0.7em 0.9em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  background: #fff;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s;
+  flex: 1;
+}
+
+.admin-input:focus {
+  border-color: var(--color-espresso);
+}
+
+.admin-input-sm {
+  padding: 0.5em 0.75em;
+  font-size: 0.875em;
+}
+
+.admin-select {
+  border: 1px solid var(--color-border-light);
+  padding: 0.7em 0.9em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  background: #fff;
+  outline: none;
+  border-radius: 0;
+  cursor: pointer;
+  flex: 1;
+}
+
+.admin-select:focus {
+  border-color: var(--color-espresso);
+}
+
+.admin-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9em;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+
+/* ===== BOTONES ===== */
+.admin-btn-add,
+.admin-prod-add {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  border: none;
+  padding: 0.7em 1.25em;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.admin-btn-add:hover {
+  background: var(--color-text);
+}
+
+.admin-btn-add-sm {
+  padding: 0.5em 1em;
+  font-size: 0.75em;
+}
+
+.admin-prod-add {
+  width: 20%;
+}
+
+svg {
+  margin-right: 0.4em;
+  margin-bottom: 0.32em;
+}
+
+.admin-btn-limpiar {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  background: none;
+  color: var(--color-espresso);
+  border: 1px solid var(--color-sand);
+  padding: 0.7em 1.25em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.admin-btn-limpiar:hover {
+  background: var(--color-linen);
+}
+
+.admin-btn-edit {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  background: none;
+  color: var(--color-espresso);
+  border: 1px solid var(--color-sand);
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-btn-edit:hover {
+  background: var(--color-linen);
+}
+
+.admin-btn-delete {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  background: none;
+  color: #c0392b;
+  border: 1px solid #f5c6c2;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-btn-delete:hover {
+  background: #fdf0ef;
+}
+
+.admin-btn-save {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8em;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  border: none;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-save:hover {
+  background: var(--color-text);
+}
+
+.admin-btn-cancel {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  background: none;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-light);
+  padding: 0.4em 0.6em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.admin-btn-cancel:hover {
+  color: var(--color-espresso);
+}
+
+
+/* ===== FILAS DE EDICIÓN Y AÑADIR ===== */
+.admin-nueva-fila {
+  display: flex;
+  gap: 0.75em;
+  align-items: center;
+  width: 50%;
+}
+
+.admin-edit-fila {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  flex: 1;
+}
+
+
+/* ===== FILTROS ===== */
+.admin-filtros {
+  border: 1px solid var(--color-sand);
+  padding: 1.5em 2em;
+  background: var(--color-background);
+}
+
+.admin-filtros-titulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  font-weight: 500;
+  margin-bottom: 2em;
+}
+
+.admin-filtros-fila {
+  display: flex;
+  gap: 0.75em;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 2em;
+}
+
+.admin-filtros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+}
+
+.admin-filtros-grid .admin-filtros-fila {
+  width: 90%;
+}
+
+.admin-filtros-botones {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.admin-filtros-botones button {
+  width: 8em;
+}
+
+
+/* ===== LISTA GENÉRICA ===== */
+.admin-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.75em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-item:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.admin-item-nombre {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.admin-item-nombre-cat {
+  font-weight: 500;
+  color: var(--color-espresso);
+}
+
+.admin-item-acciones {
+  display: flex;
+  gap: 0.5em;
+  flex-shrink: 0;
+}
+
+
+/* ===== TABLA GENÉRICA ===== */
+.admin-tabla-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-tabla-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6em 0;
+  border-bottom: 2px solid var(--color-sand);
+  margin-bottom: 0.25em;
+}
+
+.admin-tabla-th {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  font-weight: 500;
+}
+
+.admin-tabla-th-right {
+  text-align: right;
+}
+
+.admin-tabla-th-sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.admin-tabla-th-sortable:hover {
+  color: var(--color-golden);
+}
+
+
+/* ===== CATEGORÍAS ===== */
+.admin-categoria-block {
+  margin-bottom: 2.5em;
+}
+
+.admin-item-categoria {
+  background: var(--color-linen);
+  padding: 0.75em 1em;
+  border: none;
+  border-bottom: 1px solid var(--color-sand);
+}
+
+.admin-item-categoria:first-child {
+  border-top: none;
+}
+
+.admin-subcategorias {
+  padding-left: 1.5em;
+  border-left: 2px solid var(--color-sand);
+  margin-left: 1em;
+}
+
+.admin-item-sub {
+  padding: 0.6em 0;
+}
+
+.admin-nueva-sub-fila {
+  display: flex;
+  gap: 1.5em;
+  padding: 0.5em 0 0.75em;
+  width: 50%;
+  margin-top: 0.5em;
+}
+
+
+/* ===== TABLA USUARIOS ===== */
+.admin-tabla-header-u {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr 0.8fr 0.6fr 0.7fr 0.6fr 13em;
+  gap: 0;
+  align-items: center;
+}
+
+.admin-item-u {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr 0.8fr 0.6fr 0.7fr 0.6fr 13em;
+  gap: 0;
+  align-items: center;
+  padding: 0.75em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-item-u:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.admin-th-u {
+  padding: 0.6em 0.75em;
+}
+
+.admin-th-u-acciones {
+  text-align: right;
+}
+
+.admin-cell-u {
+  padding: 0 0.75em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+}
+
+.admin-cell-u.admin-item-nombre {
+  color: var(--color-espresso);
+  font-weight: 500;
+}
+
+.admin-cell-u-acciones {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+  padding-right: 0;
+}
+
+.admin-cell-u-acciones button {
+  font-size: 0.875em;
+  width: auto;
+}
+
+.admin-ordenar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  width: 22em;
+}
+
+.admin-cell-label {
+  display: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  color: var(--color-espresso);
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 0.5em;
+  min-width: 6em;
+}
+
+
+/* ===== ROL BADGE ===== */
+.admin-rol-badge {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.25em 0.6em;
+  border-radius: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.admin-rol-admin {
+  color: var(--color-espresso);
+  background: var(--color-linen);
+  border: 1px solid var(--color-sand);
+}
+
+.admin-rol-cliente {
+  color: var(--color-text-muted);
+  background: #f5f5f5;
+  border: 1px solid var(--color-border-light);
+}
+
+.aviso {
+  font-family: 'Jost', sans-serif;
+  color: var(--color-text-muted);
+  font-size: 0.75em;
+  padding: 0.25em 0.6em;
+  border-radius: 2em;
+  letter-spacing: 0.05em;
+}
+
+
+/* ===== TABLA RESERVAS ===== */
+.admin-tabla-header-rv {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr 0.8fr 13em;
+  gap: 0;
+  align-items: center;
+}
+
+.admin-item-rv {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr 0.8fr 13em;
+  gap: 0;
+  align-items: center;
+  padding: 0.75em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-item-rv:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+
+/* ===== TABLA ALQUILERES ===== */
+.admin-tabla-header-al {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 0.8fr 0.8fr 0.8fr 13em;
+  gap: 0;
+  align-items: center;
+}
+
+.admin-item-al {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 0.8fr 0.8fr 0.8fr 13em;
+  gap: 0;
+  align-items: center;
+  padding: 0.75em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-item-al:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+
+/* ===== RESERVAS Y ALQUILERES (compartido) ===== */
+.admin-th-rv {
+  padding: 0.6em 0.75em;
+}
+
+.admin-th-rv-acciones {
+  text-align: right;
+}
+
+.admin-cell-rv {
+  padding: 0 0.75em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: wrap;
+}
+
+.admin-cell-rv-acciones {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+  padding-right: 0;
+  flex-wrap: wrap;
+}
+
+.admin-cell-rv-acciones button {
+  font-size: 0.875em;
+  width: auto;
+}
+
+.admin-fecha-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.admin-btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  margin-left: 0.8em;
+}
+
+.admin-btn-icon:hover {
+  color: var(--color-espresso);
+}
+
+
+/* ===== ESTADO BADGE ===== */
+.admin-estado-badge {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.25em 0.6em;
+  border-radius: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.admin-btn-accion {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.03em;
+  border: none;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.admin-btn-accion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-btn-accion-accept {
+  background: var(--color-accept);
+  color: var(--color-background);
+}
+
+.admin-btn-accion-accept:hover:not(:disabled) {
+  background: #0b7035;
+}
+
+.admin-btn-accion-cancel {
+  background: var(--color-cancel);
+  color: var(--color-background);
+}
+
+.admin-btn-accion-cancel:hover:not(:disabled) {
+  background: var(--color-cancel-dark);
+}
+
+.admin-btn-accion-complete {
+  background: var(--color-complete);
+  color: var(--color-background);
+}
+
+.admin-btn-accion-complete:hover:not(:disabled) {
+  background: var(--color-complete-dark);
+}
+
+.admin-btn-accion-recogido {
+  background: var(--color-recogido);
+  color: var(--color-background);
+}
+
+.admin-btn-accion-recogido:hover:not(:disabled) {
+  background: var(--color-recogido-dark);
+}
+
+/* En pantalla grande: ocultar el select de móvil */
+.admin-ordenar-movil {
+  display: none;
+}
+
+/* Filtros productos - grid de 5 columnas */
+.admin-filtros-grid-prod {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Tabla productos */
+.admin-tabla-header-prod {
+  display: grid;
+  grid-template-columns: 0.3fr 1.2fr 1.5fr 0.6fr 0.8fr 0.4fr 0.5fr 0.5fr 0.9fr 0.9fr 0.7fr 0.7fr 0.8fr 0.8fr 10em;
+  gap: 0;
+  align-items: center;
+}
+
+.admin-item-prod {
+  display: grid;
+  grid-template-columns: 0.3fr 1.2fr 1.5fr 0.6fr 0.8fr 0.4fr 0.5fr 0.5fr 0.9fr 0.9fr 0.7fr 0.7fr 0.8fr 0.8fr 10em;
+  gap: 0;
+  align-items: center;
+  padding: 0.75em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-item-prod:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+/* Truncar descripción */
+.admin-cell-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.admin-cell-prod-nombre {
+  font-weight: 500;
+  color: var(--color-espresso);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48em) {
+
+  .admin-page {
+    padding: 1.5em 1em 3em;
+    overflow-x: hidden;
+  }
+
+  .admin-layout {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+
+  .admin-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-right: 0;
+    padding-bottom: 1.5em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    overflow: hidden;
+  }
+
+  .admin-nav-item {
+    border: 1px solid var(--color-border-light);
+    padding: 0.5em 0.6em;
+    flex: 1 1 calc(33% - 0.4em);
+    min-width: 0;
+    max-width: calc(33% - 0.4em);
+    justify-content: center;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .admin-nav-item:first-child {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .admin-nueva-fila,
+  .admin-nueva-sub-fila {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-filtros {
+    padding: 1em 1em;
+  }
+
+  .admin-filtros-fila {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .admin-filtros-fila .admin-select,
+  .admin-filtros-fila .admin-input {
+    width: 100%;
+  }
+
+  .admin-filtros-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-ordenar-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .admin-ordenar-wrapper .admin-select {
+    width: 100%;
+  }
+
+  /* Usuarios */
+  .admin-tabla-header-u {
+    display: none;
+  }
+
+  .admin-item-u {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+    padding: 1em 0;
+  }
+
+  .admin-cell-u {
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .admin-cell-label {
+    display: inline;
+  }
+
+  .admin-cell-u-acciones {
+    justify-content: flex-start;
+    margin-top: 0.5em;
+  }
+
+  /* Reservas */
+  .admin-tabla-header-rv {
+    display: none;
+  }
+
+  .admin-item-rv {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+    padding: 1em 0;
+  }
+
+  /* Alquileres */
+  .admin-tabla-header-al {
+    display: none;
+  }
+
+  .admin-item-al {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+    padding: 1em 0;
+  }
+
+  /* Compartido reservas y alquileres */
+  .admin-cell-rv {
+    padding: 0;
+  }
+
+  .admin-cell-rv-acciones {
+    justify-content: flex-start;
+    margin-top: 0.5em;
+  }
+
+  .admin-ordenar-movil {
+    display: flex;
+    width: 100%;
+  }
+
+  .admin-filtros-grid-prod {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-tabla-header-prod {
+    display: none;
+  }
+
+  .admin-item-prod {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+    padding: 1em 0;
+  }
+}

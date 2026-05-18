@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\Admin\ReservaController as AdminReservaController;
 use App\Http\Controllers\Admin\AlquilerController as AdminAlquilerController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoriaController as AdminCategoriaController;
+use App\Http\Controllers\Admin\EpocaController as AdminEpocaController;
+use App\Http\Controllers\Admin\PaisController as AdminPaisController;
 use App\Http\Controllers\PerfilController;
 
 // Rutas públicas autenticación
@@ -65,11 +68,13 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     // Reservas
     Route::get('/reservas', [AdminReservaController::class, 'index']);
     Route::put('/reservas/{id}/estado', [AdminReservaController::class, 'cambiarEstado']);
+    Route::put('/reservas/{id}', [AdminReservaController::class, 'update']);
 
     // Alquileres
     Route::get('/alquileres', [AdminAlquilerController::class, 'index']);
     Route::put('/alquileres/{id}/estado', [AdminAlquilerController::class, 'cambiarEstado']);
-
+    Route::put('/alquileres/{id}', [AdminAlquilerController::class, 'update']);
+    
     // Usuarios
     Route::get('/usuarios', [AdminUserController::class, 'index']);
     Route::get('/usuarios/{id}', [AdminUserController::class, 'show']);
@@ -86,4 +91,16 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/subcategorias', [AdminCategoriaController::class, 'storeSubcategoria']);
     Route::put('/subcategorias/{id}', [AdminCategoriaController::class, 'updateSubcategoria']);
     Route::delete('/subcategorias/{id}', [AdminCategoriaController::class, 'destroySubcategoria']);
+
+    // Épocas
+    Route::get('/epocas', [\App\Http\Controllers\EpocaController::class, 'index']);
+    Route::post('/epocas', [\App\Http\Controllers\Admin\EpocaController::class, 'store']);
+    Route::put('/epocas/{id}', [\App\Http\Controllers\Admin\EpocaController::class, 'update']);
+    Route::delete('/epocas/{id}', [\App\Http\Controllers\Admin\EpocaController::class, 'destroy']);
+
+    // Países
+    Route::get('/paises', [\App\Http\Controllers\PaisController::class, 'index']);
+    Route::post('/paises', [\App\Http\Controllers\Admin\PaisController::class, 'store']);
+    Route::put('/paises/{id}', [\App\Http\Controllers\Admin\PaisController::class, 'update']);
+    Route::delete('/paises/{id}', [\App\Http\Controllers\Admin\PaisController::class, 'destroy']);
 });

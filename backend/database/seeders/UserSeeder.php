@@ -15,22 +15,28 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Administrador',
-                'email' => 'admin@anticuario.com',
-                'password' => bcrypt('admin1234'),
-                'telefono' => '600000000',
-                'rol' => 'admin',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id'         => 1,
+                'name'       => 'Administrador',
+                'email'      => 'admin@anticuario.com',
+                'password'   => '$2y$12$pgGpRZK5dAqPp/GqpFih3us0p4PPT91uSXifsBUoWDpOXxycW.kq2',
+                'telefono'   => '600000000',
+                'rol'        => 'admin',
             ],
             [
-                'name' => 'Cliente Prueba',
-                'email' => 'cliente@prueba.com',
-                'password' => bcrypt('cliente1234'),
-                'telefono' => '611111111',
-                'rol' => 'cliente',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'id'         => 2,
+                'name'       => 'Cliente Prueba',
+                'email'      => 'cliente@prueba.com',
+                'password'   => '$2y$12$h.tpQ/onb15zJFpWiCNKZONreFnUqmgzSNacjAltA7rtzKK9ckMKy',
+                'telefono'   => '600 000 000',
+                'rol'        => 'cliente',
+            ],
+            [
+                'id'         => 4,
+                'name'       => 'Antiguedades Mortera',
+                'email'      => 'antiguedadesmortera@gmail.com',
+                'password'   => '$2y$12$zgBFZCh95EJGTodvjXhVguM.OhVvK8pd/ILtDT5Q0dQTZm15WcZmy',
+                'telefono'   => '626111556',
+                'rol'        => 'admin',
             ],
         ]);
     }

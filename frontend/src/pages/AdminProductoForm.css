@@ -1,0 +1,424 @@
+.apf-page {
+  min-height: 70vh;
+  padding: 3em 5em 5em;
+  background: var(--color-background);
+}
+
+/* ===== CABECERA ===== */
+.apf-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.apf-titulo {
+  font-size: 2.2em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+  margin: 0;
+}
+
+.apf-btn-volver {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  background: none;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-light);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.apf-btn-volver:hover {
+  color: var(--color-espresso);
+  border-color: var(--color-sand);
+}
+
+/* ===== MENSAJES ===== */
+.apf-error {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  padding: 0.75em 1em;
+  margin-bottom: 1.5em;
+}
+
+.apf-exito {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: #27ae60;
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  padding: 0.75em 1em;
+  margin-bottom: 1.5em;
+}
+
+.apf-cargando {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  padding: 3em 0;
+}
+
+/* ===== LAYOUT 2 COLUMNAS ===== */
+.apf-layout {
+  display: grid;
+  grid-template-columns: 22em 1fr;
+  gap: 4em;
+  align-items: start;
+}
+
+.apf-subtitulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  font-weight: 500;
+  margin-bottom: 1.25em;
+}
+
+/* ===== COLUMNA IMÁGENES ===== */
+.apf-col-imagenes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  position: sticky;
+  top: 2em;
+}
+
+.apf-imagen-principal {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-linen);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+}
+
+.apf-img-principal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apf-img-vacia {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  color: var(--color-sand);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+}
+
+.apf-badge-principal {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  padding: 0.2em 0.6em;
+}
+
+/* ===== GALERÍA MINIATURAS ===== */
+.apf-galeria {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em;
+}
+
+.apf-thumb {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-linen);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.apf-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apf-thumb-principal {
+  border-color: var(--color-espresso);
+  border-width: 2px;
+}
+
+.apf-thumb-nueva {
+  border-color: var(--color-golden);
+  border-style: dashed;
+}
+
+.apf-thumb-eliminar {
+  opacity: 0.35;
+  border-color: #c0392b;
+}
+
+.apf-thumb-badge {
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  font-size: 0.65em;
+  padding: 0.1em 0.3em;
+  line-height: 1.4;
+}
+
+.apf-thumb-btn-eliminar {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 0.7em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.apf-thumb-btn-eliminar:hover {
+  background: #c0392b;
+}
+
+/* ===== BOTÓN AÑADIR IMAGEN ===== */
+.apf-btn-anadir-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  color: var(--color-espresso);
+  border: 1px dashed var(--color-sand);
+  padding: 0.75em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.apf-btn-anadir-imagen:hover {
+  background: var(--color-linen);
+  border-color: var(--color-espresso);
+}
+
+.apf-aviso-eliminar {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8em;
+  color: #c0392b;
+  text-align: center;
+}
+
+/* ===== FORMULARIO ===== */
+.apf-col-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.apf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  margin-bottom: 2em;
+}
+
+.apf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.apf-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.apf-input,
+.apf-textarea,
+.apf-select {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  background: #fff;
+  border: 1px solid var(--color-sand);
+  padding: 0.75em 0.9em;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.apf-input:focus,
+.apf-textarea:focus,
+.apf-select:focus {
+  border-color: var(--color-espresso);
+}
+
+.apf-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.apf-textarea {
+  resize: vertical;
+  min-height: 7em;
+}
+
+.apf-fila-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
+}
+
+/* ===== CHECKBOXES ===== */
+.apf-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 1.25em;
+  border: 1px solid var(--color-border-light);
+  background: var(--color-linen);
+}
+
+.apf-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+}
+
+.apf-checkbox-label input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  accent-color: var(--color-espresso);
+  cursor: pointer;
+}
+
+/* ===== BOTONES GUARDAR / CANCELAR ===== */
+.apf-botones {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.apf-btn-guardar {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  border: none;
+  padding: 0.85em 2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.apf-btn-guardar:hover:not(:disabled) {
+  background: var(--color-text);
+}
+
+.apf-btn-guardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.apf-btn-cancelar {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
+  background: none;
+  color: var(--color-espresso);
+  border: 1px solid var(--color-sand);
+  padding: 0.85em 2em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.apf-btn-cancelar:hover:not(:disabled) {
+  background: var(--color-linen);
+}
+
+.apf-thumb-btn-principal {
+  position: absolute;
+  bottom: 0.2em;
+  right: 0.2em;
+  background: rgba(0,0,0,0.55);
+  color: #f0c040;
+  border: none;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 0.75em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.apf-thumb-btn-principal:hover {
+  background: var(--color-espresso);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 56em) {
+  .apf-page {
+    padding: 2em 1.5em 4em;
+  }
+
+  .apf-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5em;
+  }
+
+  .apf-col-imagenes {
+    position: static;
+  }
+
+  .apf-imagen-principal {
+    max-width: 20em;
+  }
+
+  .apf-fila-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .apf-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+  }
+}

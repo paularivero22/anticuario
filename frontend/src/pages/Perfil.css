@@ -1,0 +1,404 @@
+/* ===== PAGINA PERFIL ===== */
+.perfil-page {
+  min-height: 70vh;
+  padding: 3em 5em 5em;
+  background: var(--color-background);
+}
+
+/* ===== CABECERA ===== */
+.perfil-cabecera {
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.perfil-titulo {
+  font-size: 2.2em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+  margin-bottom: 0.2em;
+}
+
+.perfil-subtitulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+}
+
+/* ===== LAYOUT ===== */
+.perfil-layout {
+  display: grid;
+  grid-template-columns: 14em 1fr;
+  gap: 4em;
+  align-items: start;
+}
+
+/* ===== SIDEBAR ===== */
+.perfil-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border-light);
+  padding-right: 2em;
+}
+
+.perfil-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.875em 0;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-border-light);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+  width: 100%;
+}
+
+.perfil-nav-item:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.perfil-nav-item:hover {
+  color: var(--color-espresso);
+}
+
+.perfil-nav-activo {
+  color: var(--color-espresso);
+  font-weight: 500;
+}
+
+.perfil-nav-activo svg {
+  stroke: var(--color-espresso);
+}
+
+/* ===== CONTENIDO ===== */
+.perfil-contenido {
+  min-height: 20em;
+}
+
+.perfil-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.perfil-seccion-titulo {
+  font-size: 2em;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-espresso);
+}
+
+/* ===== AVATAR ===== */
+.perfil-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.perfil-avatar {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  background: var(--color-espresso);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perfil-nombre-grande {
+  font-size: 1.75em;
+  font-weight: 400;
+  color: var(--color-espresso);
+  font-family: 'Jost', sans-serif;
+}
+
+/* ===== FORMULARIO ===== */
+.perfil-cargando {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+
+.perfil-form-fila {
+  display: flex;
+  gap: 1.5em;
+}
+
+.perfil-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  flex: 1;
+}
+
+.perfil-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+}
+
+.perfil-input {
+  border: 1px solid var(--color-sand);
+  padding: 0.7em 0.9em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text);
+  background: #fff;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.perfil-input:focus {
+  border-color: var(--color-espresso);
+}
+
+.perfil-input:disabled {
+  background: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-border-light);
+  cursor: default;
+}
+
+/* ===== MENSAJES ===== */
+.perfil-exito {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: #27ae60;
+  background: #eafaf1;
+  border: 1px solid #a9dfbf;
+  padding: 0.6em 0.9em;
+}
+
+.perfil-error {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  padding: 0.6em 0.9em;
+}
+
+/* ===== BOTONES ===== */
+.perfil-botones {
+  display: flex;
+  gap: 1em;
+}
+
+/* ===== VACIO ===== */
+.perfil-vacio {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  color: var(--color-text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48em) {
+  .perfil-page {
+    padding: 2em 1.5em 3em;
+  }
+
+  .perfil-layout {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+
+  .perfil-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-right: 0;
+    padding-bottom: 1.5em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  .perfil-nav-item {
+    border: 1px solid var(--color-border-light);
+    padding: 0.6em 1em;
+    border-bottom: 1px solid var(--color-border-light);
+    flex: 1;
+    min-width: 8em;
+    justify-content: center;
+  }
+
+  .perfil-nav-item:first-child {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .perfil-form-fila {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .perfil-botones {
+    flex-direction: column;
+  }
+
+  .perfil-botones .btn-primary,
+  .perfil-botones .btn-outline-dark {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ===== LISTA RESERVAS / ALQUILERES ===== */
+.perfil-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  padding: 1.25em 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.perfil-item:first-child {
+  border-top: 1px solid var(--color-border-light);
+}
+
+.perfil-item-num {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+  min-width: 1.5em;
+  text-align: center;
+}
+
+.perfil-item-img {
+  width: 4.5em;
+  height: 5.5em;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.perfil-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perfil-item-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-border-light);
+}
+
+.perfil-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.perfil-item-nombre {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.938em;
+  font-weight: 500;
+  color: var(--color-espresso);
+  transition: color 0.2s;
+}
+
+.perfil-item-nombre:hover {
+  color: var(--color-golden);
+}
+
+.perfil-item-fecha {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-muted);
+}
+
+.perfil-item-estado {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.25em 0.6em;
+  border-radius: 2em;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+/* ===== BOTON CANCELAR ===== */
+.perfil-btn-cancelar {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.perfil-btn-cancelar:hover {
+  background: #a93226;
+}
+
+.perfil-btn-cancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.perfil-seccion-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5em;
+}
+
+.perfil-btn-recargar {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-linen);
+  padding: 0.5em 1.5em;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.perfil-btn-recargar:hover {
+  color: var(--color-espresso);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48em) {
+  .perfil-item {
+    flex-wrap: wrap;
+  }
+
+  .perfil-btn-cancelar {
+    width: 100%;
+    text-align: center;
+  }
+}
+

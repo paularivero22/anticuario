@@ -8,9 +8,7 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Solo necesito el index para mostrar las categorías con sus subcategorías en la página de inicio 
     public function index()
     {
         return response()->json(Categoria::all());

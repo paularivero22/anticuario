@@ -20,9 +20,7 @@ class UserController extends Controller
         return response()->json($usuarios);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Ver los detalles de un usuario, incluyendo sus reservas y alquileres con los productos correspondientes
     public function show(string $id)
     {
         $usuario = User::with(['reservas.producto', 'alquileres.producto'])
@@ -31,9 +29,7 @@ class UserController extends Controller
         return response()->json($usuario);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Función para cambiar el rol de un usuario (cliente o admin)
     public function cambiarRol(Request $request, $id)
     {
         $request->validate([
@@ -49,13 +45,12 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar un usuario
     public function destroy(string $id)
     {
         $usuario = User::findOrFail($id);
 
+        // no se podrá eliminar un administrador sin cambiarlo a cliente previamente
         if ($usuario->rol === 'admin') {
             return response()->json([
                 'mensaje' => 'No se puede eliminar un administrador',

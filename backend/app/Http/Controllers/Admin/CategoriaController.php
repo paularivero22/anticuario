@@ -19,9 +19,7 @@ class CategoriaController extends Controller
         );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crear categoria
     public function store(Request $request)
     {
         $request->validate([
@@ -36,9 +34,7 @@ class CategoriaController extends Controller
         ], 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar el nombre de una categoria
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -54,9 +50,7 @@ class CategoriaController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar una categoria
     public function destroy(string $id)
     {
         $categoria = Categoria::findOrFail($id);
@@ -74,6 +68,7 @@ class CategoriaController extends Controller
         ]);
     }
 
+    // Crear una sobcategoría desde la tabla de la categoria a la que pertenece
     public function storeSubcategoria(Request $request)
     {
         $request->validate([
@@ -92,6 +87,7 @@ class CategoriaController extends Controller
         ], 201);
     }
 
+    // Editar una subcategoria
     public function updateSubcategoria(Request $request, $id)
     {
         $request->validate([
@@ -107,6 +103,7 @@ class CategoriaController extends Controller
         ]);
     }
 
+    // Eliminar una subcategoria
     public function destroySubcategoria($id)
     {
         $subcategoria = Subcategoria::findOrFail($id);

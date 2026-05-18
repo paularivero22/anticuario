@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    protected $table = 'productos';
+    protected $table = 'productos'; 
 
     protected $fillable = [
         'nombre',
@@ -60,7 +60,7 @@ class Producto extends Model
         return $this->hasMany(Alquiler::class);
     }
 
-    // obtener imagen principal
+    // Funcion para obtener la imagen principal del producto
     public function imagenPrincipal()
     {
         return $this->hasOne(Imagen::class)->where('es_principal', true);

@@ -1,0 +1,220 @@
+/* ===== MAIN ===== */
+.main {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.home-header {
+  background-image: url('/imagenes/foto-header.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 43.75em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.548);
+}
+
+.home-header>div {
+  position: relative;
+  z-index: 1;
+}
+
+.header-subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.688em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-sand);
+  margin-bottom: 1.3em;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 3.5em;
+  color: var(--color-linen);
+  font-weight: 300;
+  line-height: 1.1;
+  font-style: italic;
+  text-align: center;
+}
+
+.header-buttons {
+  margin-top: 1.90em;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+/* ===== INFO CARDS ===== */
+.info-cards-container {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.info-card {
+  border-right: 1px solid var(--color-border-light);
+  padding: 2em 2.5em;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625em;
+  text-align: center;
+}
+
+.info-card:last-child {
+  border-right: none;
+}
+
+.info-card-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.875em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.375em;
+  color: var(--color-espresso);
+}
+
+.info-card svg {
+  stroke: var(--color-espresso);
+}
+
+.info-card-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.813em;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.info-card-links {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.625em;
+  justify-content: center;
+}
+
+/* ===== DESTACADOS ===== */
+.destacados-section,
+.sobre-nosotros-wrapper {
+  padding: 6.25em 4.375em;
+}
+
+.productos-grid {
+  grid-template-columns: repeat(4, minmax(0, 220px));
+}
+
+/* ===== SOBRE NOSOTROS ===== */
+.sobre-nosotros-section {
+  background: #f5f5f0;
+  padding: 3.75em;
+}
+
+.sobre-nosotros-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.75em;
+  align-items: center;
+}
+
+.sobre-nosotros-title {
+  color: var(--color-espresso);
+  font-size: 2.375em;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+
+.sobre-nosotros-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 1em;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 2em;
+}
+
+.sobre-nosotros-img {
+  background-image: url('/imagenes/foto-antigua.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 4/3;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  /* Header */
+  .home-header {
+    height: 30em;
+  }
+
+  .header-title {
+    font-size: 2.2em;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Info cards */
+  .info-cards-container {
+    flex-direction: column;
+  }
+
+  .info-card {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+    padding: 1.5em;
+  }
+
+  .info-card:last-child {
+    border-bottom: none;
+  }
+
+  /* Destacados */
+  .destacados-section,
+  .sobre-nosotros-wrapper {
+    padding: 3em 1.5em;
+  }
+
+  .productos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Sobre nosotros */
+  .sobre-nosotros-section {
+    padding: 2em 1.5em;
+  }
+
+  .sobre-nosotros-grid {
+    grid-template-columns: 1fr;
+    gap: 3em;
+  }
+
+  .sobre-nosotros-img {
+    order: 2;
+  }
+
+  .sobre-nosotros-title {
+    font-size: 1.8em;
+  }
+}

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Schedule;
 2. Comando para expirar alquileres cuya fecha de recogida ha pasado y no se hayan marcado como completados
 3. Comando para retrasar alquileres cuya fecha de devolución ha pasado y el producto ya se ha recogido
 */
-// Schedule::command('reservas:expirar')->daily();
-// Schedule::command('alquileres:expirar')->daily();
-// Schedule::command('alquileres:retrasar')->daily();
+Schedule::command('reservas:expirar')->daily();
+Schedule::command('alquileres:expirar')->daily();
+Schedule::command('alquileres:retrasar')->daily();
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());

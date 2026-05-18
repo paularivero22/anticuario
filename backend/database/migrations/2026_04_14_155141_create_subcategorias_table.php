@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('subcategorias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+
             $table->foreignId('categoria_id')
                 ->constrained('categorias')
                 ->onDelete('cascade');
+                
             $table->timestamps();
         });
     }

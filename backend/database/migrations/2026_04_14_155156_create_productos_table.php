@@ -13,34 +13,33 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-        $table->string('nombre');
-        $table->text('descripcion')->nullable();
-        $table->decimal('precio', 10, 2)->nullable();
-        $table->string('estado')->default('disponible');
-        $table->boolean('destacado')->default(false);
-        $table->boolean('permite_reserva')->default(false);
-        $table->boolean('permite_alquiler')->default(false);
-        
-        $table->foreignId('subcategoria_id')
-            ->constrained('subcategorias')
-            ->onDelete('cascade');
+            $table->string('nombre');
+            $table->text('descripcion')->nullable();
+            $table->decimal('precio', 10, 2)->nullable();
+            $table->string('estado')->default('disponible');
+            $table->boolean('destacado')->default(false);
+            $table->boolean('permite_reserva')->default(false);
+            $table->boolean('permite_alquiler')->default(false);
 
-        $table->foreignId('pais_id')
-            ->nullable()
-            ->constrained('paises')
-            ->onDelete('set null');
+            $table->foreignId('subcategoria_id')
+                ->constrained('subcategorias')
+                ->onDelete('cascade');
 
-        $table->foreignId('epoca_id')
-            ->nullable()
-            ->constrained('epocas')
-            ->onDelete('set null');
+            $table->foreignId('pais_id')
+                ->nullable()
+                ->constrained('paises')
+                ->onDelete('set null');
 
-        $table->string('medidas')->nullable();
-        $table->string('materiales')->nullable();
-        
-        $table->timestamps();
-    });
-       
+            $table->foreignId('epoca_id')
+                ->nullable()
+                ->constrained('epocas')
+                ->onDelete('set null');
+
+            $table->string('medidas')->nullable();
+            $table->string('materiales')->nullable();
+
+            $table->timestamps();
+        });
     }
 
     /**

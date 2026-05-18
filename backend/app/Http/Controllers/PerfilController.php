@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
-    // Ver perfil del usuario logueado
+    
     public function show(Request $request)
     {
         return response()->json($request->user());
     }
 
-    // Editar perfil
+    // Editar los datos de usuario (nombre, telefono, email)
     public function update(Request $request)
     {
         $request->validate([
@@ -30,12 +30,12 @@ class PerfilController extends Controller
         ]);
     }
 
-    // Cambiar contraseña
+    // Funcion para cambiar la contraseña
     public function cambiarPassword(Request $request)
     {
         $request->validate([
             'password_actual' => 'required|string',
-            'password_nuevo'  => 'required|string|min:6|confirmed',
+            'password_nuevo'  => 'required|string|min:8|confirmed',
         ]);
 
         if (!Hash::check($request->password_actual, $request->user()->password)) {
@@ -53,7 +53,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    // Ver mis reservas
+    // Función para ver las reservas del usuario logueado
     public function misReservas(Request $request)
     {
         $reservas = $request->user()
@@ -65,7 +65,7 @@ class PerfilController extends Controller
         return response()->json($reservas);
     }
 
-    // Ver mis alquileres
+    // Función para ver los alquileres del usuario logueado
     public function misAlquileres(Request $request)
     {
         $alquileres = $request->user()

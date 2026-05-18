@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('telefono')->nullable();;
-            $table->string('rol')->default('cliente');
+            $table->string('telefono')->nullable(); // nuevo campo para el número de teléfono, opcional
+            $table->string('rol')->default('cliente'); // nuevo campo para el rol del usuario, valor predeterminado 'cliente'
             
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

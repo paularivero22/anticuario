@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->boolean('es_principal')->default(false);
+
             $table->foreignId('producto_id')
                 ->constrained('productos')
                 ->onDelete('cascade');
+                
             $table->timestamps();
         });
     }

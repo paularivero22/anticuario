@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('usuario_id')
                 ->constrained('users')
                 ->onDelete('cascade');
+
             $table->foreignId('producto_id')
                 ->constrained('productos')
                 ->onDelete('cascade');
+                
             $table->date('fecha_recogida')->nullable();
             $table->date('fecha_devolucion')->nullable();
             $table->string('estado')->default('solicitado');

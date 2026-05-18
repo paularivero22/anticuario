@@ -1,0 +1,130 @@
+/* ===== PAGINA AUTH ===== */
+.auth-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 1.5em;
+    background: var(--color-linen);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 26em;
+}
+
+.auth-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.688em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-golden);
+    margin-bottom: 0.5em;
+}
+
+.auth-titulo {
+    font-size: 2.2em;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-espresso);
+    margin-bottom: 1.5em;
+    line-height: 1.1;
+}
+
+/* ===== FORMULARIO ===== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    margin-bottom: 1.5em;
+}
+
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.auth-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-espresso);
+}
+
+.auth-opcional {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.auth-input {
+    border: 1px solid var(--color-sand);
+    border-bottom: 2px solid var(--color-sand);
+    padding: 0.75em 1em;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.875em;
+    color: var(--color-text);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    width: 100%;
+}
+
+.auth-input:focus {
+    border-color: var(--color-espresso);
+}
+
+.auth-input-error {
+    border-color: #c0392b;
+}
+
+.auth-field-error {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    color: #c0392b;
+}
+
+/* ===== ERROR GENERAL ===== */
+.auth-error {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.813em;
+    color: #c0392b;
+    background: #fdf0ef;
+    border: 1px solid #f5c6c2;
+    padding: 0.75em 1em;
+    margin-bottom: 1em;
+}
+
+/* ===== BOTON ===== */
+.auth-submit {
+    width: 100%;
+    padding: 0.875em;
+    margin-top: 0.5em;
+}
+
+.auth-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ===== PIE ===== */
+.auth-footer-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.813em;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.auth-link {
+    color: var(--color-espresso);
+    border-bottom: 1px solid var(--color-golden);
+    cursor: pointer;
+}
+
+.auth-link:hover {
+    color: var(--color-golden);
+}

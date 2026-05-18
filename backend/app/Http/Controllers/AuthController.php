@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // Función para iniciar sesión y obtener un token de autenticación
     public function login(Request $request)
     {
         $request->validate([
@@ -33,12 +34,13 @@ class AuthController extends Controller
         ]);
     }
 
+    // Función para registrar un nuevo usuario
     public function registro(Request $request)
     {
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'telefono' => 'nullable|string|max:20',
         ]);
 
@@ -59,6 +61,7 @@ class AuthController extends Controller
         ], 201);
     }
 
+    // Función para cerrar sesión (revocar el token de autenticación)
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();

@@ -21,10 +21,10 @@ class AlquilerController extends Controller
         return response()->json($alquileres);
     }
 
-    // funcion para cambiar el estado de un alquiler (solicitado, aceptado, cancelado, expirado, recogido, retrasado, completado)
+    // Funcion para cambiar el estado de un alquiler (solicitado, aceptado, cancelado, expirado, recogido, retrasado, completado)
     public function cambiarEstado(Request $request, $id)
     {
-        // el admin no puede cambiar el estado a solicitado, por lo que lo omito de la validacion
+        // el admin no puede cambiar el estado a solicitado, por lo que no está en la validación
         $request->validate([
             'estado' => 'required|in:aceptado,cancelado,recogido,retrasado,completado,expirado',
         ]);
@@ -86,12 +86,21 @@ class AlquilerController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar la fecha de recogida y devolucion de un alquiler
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'fecha_recogida'   => 'nullable|date',
+            'fecha_devolucion' => 'nullable|date|after_or_equal:fecha_recogida',
+        ]);
+
+        $alquiler = Alquiler::findOrFail($id);
+        $alquiler->update($request->only(['fecha_recogida', 'fecha_devolucion']));
+
+        return response()->json([
+            'mensaje'   => 'Fechas actualizadas correctamente',
+            'alquiler'  => $alquiler,
+        ]);
     }
 
     /**

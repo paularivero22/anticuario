@@ -22,10 +22,10 @@ class ReservaController extends Controller
         return response()->json($reservas);
     }
 
-    // funcion para cambiar el estado de una reserva (solicitada, aceptada, cancelada, expirada, completada)
+    // Funcion para cambiar el estado de una reserva (solicitada, aceptada, cancelada, expirada, completada)
     public function cambiarEstado(Request $request, $id)
     {
-        // el admin no puede cambiar el estado a solicitada, por lo que lo omito de la validacion
+        // el admin no puede cambiar el estado a solicitada, por lo que no está en la validación
         $request->validate([
             'estado' => 'required|in:aceptada,cancelada,completada,expirada',
         ]);
@@ -74,12 +74,20 @@ class ReservaController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar la fecha de recogida de una reserva
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'fecha_recogida' => 'required|date',
+        ]);
+
+        $reserva = Reserva::findOrFail($id);
+        $reserva->update(['fecha_recogida' => $request->fecha_recogida]);
+
+        return response()->json([
+            'mensaje' => 'Fecha actualizada correctamente',
+            'reserva' => $reserva,
+        ]);
     }
 
     /**
