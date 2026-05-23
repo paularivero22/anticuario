@@ -13,7 +13,7 @@ class PaisSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('paises')->insert([
+        DB::table('paises')->insertOrIgnore([
             ['nombre' => 'España'],
             ['nombre' => 'Francia'],
             ['nombre' => 'Inglaterra'],

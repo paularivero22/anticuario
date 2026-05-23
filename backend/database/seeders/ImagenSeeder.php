@@ -9,7 +9,7 @@ class ImagenSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('imagenes')->insert([
+        DB::table('imagenes')->insertOrIgnore([
             [
                 'id' => 9,
                 'url' => '/storage/productos/XZVBlip8f6ozjdfbUd6mMWoOBYwYnAg0dzs03phu.webp',

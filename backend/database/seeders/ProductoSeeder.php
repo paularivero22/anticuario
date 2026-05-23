@@ -9,7 +9,7 @@ class ProductoSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('productos')->insert([
+        DB::table('productos')->insertOrIgnore([
             [
                 'id' => 7,
                 'nombre' => 'Enrique IV a las puertas de París (agosto 1590)',

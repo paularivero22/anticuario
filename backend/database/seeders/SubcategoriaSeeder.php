@@ -13,7 +13,7 @@ class SubcategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('subcategorias')->insert([
+        DB::table('subcategorias')->insertOrIgnore([
             [
                 'id' => 1,
                 'nombre' => 'Sillas',

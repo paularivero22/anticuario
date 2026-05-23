@@ -13,7 +13,7 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categorias')->insert([
+        DB::table('categorias')->insertOrIgnore([
             ['nombre' => 'Muebles'],
             ['nombre' => 'Decoración'],
             ['nombre' => 'Iluminación'],

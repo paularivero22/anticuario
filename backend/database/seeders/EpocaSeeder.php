@@ -13,7 +13,7 @@ class EpocaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('epocas')->insert([
+        DB::table('epocas')->insertOrIgnore([
             ['nombre' => 'Siglo XVII'],
             ['nombre' => 'Siglo XVIII'],
             ['nombre' => 'Siglo XIX'],
