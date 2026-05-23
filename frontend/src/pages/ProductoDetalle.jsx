@@ -40,14 +40,14 @@ export default function ProductoDetalle() {
   // Cargar producto al montar el componente o al cambiar el ID
   useEffect(() => {
     setCargando(true)
-    fetch(`http://localhost:8000/api/productos/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/productos/${id}`)
       .then(res => res.json())
       .then(data => {
         setProducto(data)
         setImagenActual(0)
         setCargando(false)
         if (data.subcategoria?.categoria_id) {
-          fetch(`http://localhost:8000/api/productos?categoria_id=${data.subcategoria.categoria_id}`)
+          fetch(`${import.meta.env.VITE_API_URL}/api/productos?categoria_id=${data.subcategoria.categoria_id}`)
             .then(res => res.json())
             .then(productos => {
               const otros = productos.filter(p => p.id !== data.id)
@@ -106,7 +106,7 @@ export default function ProductoDetalle() {
     setReservando(true)
     setReservaError('')
     try {
-      const res = await fetch('http://localhost:8000/api/reservas', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export default function ProductoDetalle() {
     setAlquilando(true)
     setAlquilerError('')
     try {
-      const res = await fetch('http://localhost:8000/api/alquileres', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/alquileres`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -259,7 +259,7 @@ export default function ProductoDetalle() {
                 <div className="modal-producto-info">
                   {producto.imagenes && producto.imagenes.length > 0 && (
                     <img
-                      src={`http://localhost:8000${producto.imagenes[0]?.url}`}
+                      src={`${import.meta.env.VITE_API_URL}${producto.imagenes[0]?.url}`}
                       alt={producto.nombre}
                       className="modal-producto-img"
                     />
@@ -353,7 +353,7 @@ export default function ProductoDetalle() {
                 <div className="modal-producto-info">
                   {producto.imagenes && producto.imagenes.length > 0 && (
                     <img
-                      src={`http://localhost:8000${producto.imagenes[0]?.url}`}
+                      src={`${import.meta.env.VITE_API_URL}${producto.imagenes[0]?.url}`}
                       alt={producto.nombre}
                       className="modal-producto-img"
                     />
@@ -450,7 +450,7 @@ export default function ProductoDetalle() {
           <button className="lightbox-cerrar" onClick={() => setLightboxAbierto(false)}>✕</button>
           <div className="lightbox-contenido" onClick={e => e.stopPropagation()}>
             <img
-              src={`http://localhost:8000${producto.imagenes[imagenActual]?.url}`}
+              src={`${import.meta.env.VITE_API_URL}${producto.imagenes[imagenActual]?.url}`}
               alt={producto.nombre}
               className="lightbox-img"
             />
@@ -485,7 +485,7 @@ export default function ProductoDetalle() {
             {producto.imagenes && producto.imagenes.length > 0 ? (
               <>
                 <img
-                  src={`http://localhost:8000${producto.imagenes[imagenActual]?.url}`}
+                  src={`${import.meta.env.VITE_API_URL}${producto.imagenes[imagenActual]?.url}`}
                   alt={producto.nombre}
                   className="detalle-img"
                 />
@@ -517,7 +517,7 @@ export default function ProductoDetalle() {
                   className={`detalle-miniatura ${imagenActual === index ? 'miniatura-activa' : ''}`}
                   onClick={() => setImagenActual(index)}
                 >
-                  <img src={`http://localhost:8000${img.url}`} alt={`${producto.nombre} ${index + 1}`} />
+                  <img src={`${import.meta.env.VITE_API_URL}${img.url}`} alt={`${producto.nombre} ${index + 1}`} />
                 </div>
               ))}
             </div>
@@ -602,7 +602,15 @@ export default function ProductoDetalle() {
             {masProductos.map(p => (
               <div key={p.id} className="producto-card" onClick={() => navigate(`/producto/${p.id}`)}>
                 <div className="producto-img-wrapper">
-                  <div className="producto-img" />
+                  {p.imagen_principal ? (
+                    <img
+                      src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
+                      alt={p.nombre}
+                      className="producto-img"
+                    />
+                  ) : (
+                    <div className="producto-img" />
+                  )}
                 </div>
                 <p className="producto-nombre">{p.nombre}</p>
                 <p className="producto-precio">{p.precio}€</p>

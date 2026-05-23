@@ -21,7 +21,7 @@ export default function Catalogo() {
 
   // cargar categorías 
   useEffect(() => {
-    fetch('http://localhost:8000/api/categorias')
+    fetch(`${import.meta.env.VITE_API_URL}/api/categorias`)
       .then(res => res.json())
       .then(data => {
         setCategorias(data)

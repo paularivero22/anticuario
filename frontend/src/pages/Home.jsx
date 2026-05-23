@@ -9,7 +9,7 @@ export default function Home() {
 
   // obtener productos destacados
   useEffect(() => {
-    fetch('http://localhost:8000/api/productos/destacados')
+    fetch(`${import.meta.env.VITE_API_URL}/api/productos/destacados`)
       .then(res => res.json())
       .then(data => {
         setProductos(data);
@@ -41,7 +41,7 @@ export default function Home() {
         <div className="info-card">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" strokeWidth="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" /></svg>
           <div>
-            <p className="info-card-title">Reservas</p>
+            <p className="info-card-title">Reservas y Alquileres</p>
             <p className="info-card-text">Reserva o alquila un producto desde la web.<br />Paga y recoge en persona.</p>
             <div className="info-card-links">
               {/* <span className="link-underline">Guía de Reservas</span>
@@ -54,7 +54,7 @@ export default function Home() {
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" strokeWidth="1.2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
           <div>
             <p className="info-card-title">Horarios de la tienda</p>
-            <p className="info-card-text">Sábados 9:00 - 14:00<br />Apertura con previa llamada entre semana</p>
+            <p className="info-card-text">Sábados 9:00 - 14:00<br />Apertura entre semana con previa llamada</p>
             <span className="link-underline" onClick={() => navigate('/contacto')}>Contacto</span>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Home() {
               <div className="producto-img-wrapper">
                 {p.imagen_principal ? (
                   <img
-                    src={`http://localhost:8000${p.imagen_principal.url}`}
+                    src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
                     alt={p.nombre}
                     className="producto-img"
                   />

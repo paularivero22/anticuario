@@ -14,7 +14,7 @@ export default function Header() {
     const usuarioMenuRef = useRef(null)
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/categorias')
+        fetch(`${import.meta.env.VITE_API_URL}/api/categorias`)
             .then(res => res.json())
             .then(data => setCategorias(data))
             .catch(err => console.error('Error al cargar categorías:', err))
@@ -61,7 +61,7 @@ export default function Header() {
 
                 {/* Logo */}
                 <Link to="/" className="navbar-logo">
-                    <span className="navbar-logo-text">LOGO</span>
+                    <span className="navbar-logo-text"></span>
                 </Link>
 
                 {/* MENU */}
@@ -163,7 +163,7 @@ export default function Header() {
             <div className={`menu-movil ${menuMovilAbierto ? 'menu-movil-abierto' : ''}`}>
                 <div className="menu-movil-header">
                     <Link to="/" className="navbar-logo" onClick={() => setMenuMovilAbierto(false)}>
-                        <span className="navbar-logo-text">LOGO</span>
+                        <span className="navbar-logo-text"></span>
                     </Link>
                     <button className="menu-movil-cerrar" onClick={() => setMenuMovilAbierto(false)}>✕</button>
                 </div>

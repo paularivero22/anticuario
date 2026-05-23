@@ -22,9 +22,12 @@
 }
 
 .navbar-logo {
-    width: 5em;
+    width: 10.5em;
     height: 3.75em;
-    border: 1px solid var(--color-sand);
+    background-image: url('/imagenes/logo2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -278,6 +281,7 @@
         opacity: 0;
         transform: translateY(-0.5em);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

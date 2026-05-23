@@ -37,11 +37,6 @@ export default function Footer() {
                         <a href="https://www.facebook.com/p/Antiguedades-Mortera-100062927363949" target="_blank" rel="noopener noreferrer" className="footer-link footer-link-inline">Facebook</a>
                     </div>
                 </div>
-                <div className="footer-logo-wrapper">
-                    <div className="footer-logo">
-                        <span className="footer-logo-text">LOGO</span>
-                    </div>
-                </div>
             </div>
             <div className="footer-bottom">
                 <p className="footer-copy">© 2026 Antigüedades Mortera. Todos los derechos reservados.</p>

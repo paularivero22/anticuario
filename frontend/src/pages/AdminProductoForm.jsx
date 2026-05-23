@@ -58,9 +58,9 @@ export default function AdminProductoForm() {
   // cargar selects
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:8000/api/admin/categorias', { headers: authHeaders() }).then(r => r.json()),
-      fetch('http://localhost:8000/api/epocas', { headers: authHeaders() }).then(r => r.json()),
-      fetch('http://localhost:8000/api/paises', { headers: authHeaders() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias`, { headers: authHeaders() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/epocas`, { headers: authHeaders() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/paises`, { headers: authHeaders() }).then(r => r.json()),
     ]).then(([cats, eps, pais]) => {
       setCategorias(cats)
       setEpocas(eps)
@@ -71,7 +71,7 @@ export default function AdminProductoForm() {
   // cargar producto si es edición
   useEffect(() => {
     if (!esEdicion) return
-    fetch(`http://localhost:8000/api/admin/productos/${id}`, { headers: authHeaders() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/productos/${id}`, { headers: authHeaders() })
       .then(r => r.json())
       .then(p => {
         setForm({
@@ -153,8 +153,8 @@ export default function AdminProductoForm() {
       imagenesNuevas.forEach(img => formData.append('imagenes[]', img))
 
       const url = esEdicion
-        ? `http://localhost:8000/api/admin/productos/${id}`
-        : 'http://localhost:8000/api/admin/productos'
+        ? `${import.meta.env.VITE_API_URL}/api/admin/productos/${id}`
+        : `${import.meta.env.VITE_API_URL}/api/admin/productos`
 
 
       if (esEdicion) formData.append('_method', 'PUT') // laravel necesita _method para PUT con multipart
@@ -169,7 +169,7 @@ export default function AdminProductoForm() {
 
       // 2. Eliminar imágenes marcadas
       await Promise.all(imagenesAEliminar.map(imgId =>
-        fetch(`http://localhost:8000/api/admin/imagenes/${imgId}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/admin/imagenes/${imgId}`, {
           method: 'DELETE',
           headers: authHeaders(),
         })
@@ -188,7 +188,7 @@ export default function AdminProductoForm() {
   const handleCambiarPrincipal = async (imagenId) => {
     if (!esEdicion) return
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/productos/${id}/imagen-principal`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/productos/${id}/imagen-principal`, {
         method: 'POST',
         headers: { ...authHeaders(), 'Content-Type': 'application/json' },
         body: JSON.stringify({ imagen_id: imagenId })
@@ -232,7 +232,7 @@ export default function AdminProductoForm() {
           {/* Imagen principal */}
           <div className="apf-imagen-principal">
             {imagenPrincipal ? (
-              <img src={`http://localhost:8000${imagenPrincipal.url}`} alt="Principal" className="apf-img-principal" />
+              <img src={`${import.meta.env.VITE_API_URL}${imagenPrincipal.url}`} alt="Principal" className="apf-img-principal" />
             ) : previsualizaciones.length > 0 ? (
               <img src={previsualizaciones[0]} alt="Principal" className="apf-img-principal" />
             ) : (
@@ -252,7 +252,7 @@ export default function AdminProductoForm() {
             <div className="apf-galeria">
               {imagenesVisibles.map(img => (
                 <div key={img.id} className={`apf-thumb ${imagenesAEliminar.includes(img.id) ? 'apf-thumb-eliminar' : ''} ${img.es_principal ? 'apf-thumb-principal' : ''}`}>
-                  <img src={`http://localhost:8000${img.url}`} alt="" />
+                  <img src={`${import.meta.env.VITE_API_URL}${img.url}`} alt="" />
                   {img.es_principal && <span className="apf-thumb-badge">✓</span>}
                   {!img.es_principal && !imagenesAEliminar.includes(img.id) && esEdicion && (
                     <button className="apf-thumb-btn-principal" onClick={() => handleCambiarPrincipal(img.id)} title="Marcar como principal">

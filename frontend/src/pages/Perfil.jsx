@@ -63,7 +63,7 @@ export default function Perfil() {
   useEffect(() => {
     if (!usuario) return
     setCargando(true)
-    fetch('http://localhost:8000/api/perfil', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/perfil`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Accept': 'application/json' }
     })
       .then(res => res.json())
@@ -79,7 +79,7 @@ export default function Perfil() {
   useEffect(() => {
     if (seccion !== 'reservas' || !usuario) return
     setCargandoReservas(true)
-    fetch('http://localhost:8000/api/perfil/reservas', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/perfil/reservas`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Accept': 'application/json' }
     })
       .then(res => res.json())
@@ -91,7 +91,7 @@ export default function Perfil() {
   useEffect(() => {
     if (seccion !== 'alquileres' || !usuario) return
     setCargandoAlquileres(true)
-    fetch('http://localhost:8000/api/perfil/alquileres', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/perfil/alquileres`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Accept': 'application/json' }
     })
       .then(res => res.json())
@@ -109,7 +109,7 @@ export default function Perfil() {
   const handleGuardar = async () => {
     setGuardando(true); setExito(''); setError('')
     try {
-      const res = await fetch('http://localhost:8000/api/perfil', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/perfil`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify(form)
@@ -134,7 +134,7 @@ export default function Perfil() {
   const handleCambiarPassword = async () => {
     setGuardandoPassword(true); setExitoPassword(''); setErrorPassword('')
     try {
-      const res = await fetch('http://localhost:8000/api/perfil/password', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/perfil/password`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify(formPassword)
@@ -151,7 +151,7 @@ export default function Perfil() {
   const handleCancelarReserva = async (id) => {
     setCelandoReserva(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/reservas/${id}/cancelar`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservas/${id}/cancelar`, {
         method: 'PUT',
         headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       })
@@ -165,7 +165,7 @@ export default function Perfil() {
   const handleCancelarAlquiler = async (id) => {
     setCancelandoAlquiler(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/alquileres/${id}/cancelar`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/alquileres/${id}/cancelar`, {
         method: 'PUT',
         headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       })
@@ -334,7 +334,7 @@ export default function Perfil() {
                         <span className="perfil-item-num">{i + 1}</span>
                         <div className="perfil-item-img">
                           {r.producto?.imagen_principal?.url
-                            ? <img src={`http://localhost:8000${r.producto.imagen_principal.url}`} alt={r.producto?.nombre} />
+                            ? <img src={`${import.meta.env.VITE_API_URL}${r.producto.imagen_principal.url}`} alt={r.producto?.nombre} />
                             : <div className="perfil-item-img-placeholder" />
                           }
                         </div>
@@ -388,7 +388,7 @@ export default function Perfil() {
                         <span className="perfil-item-num">{i + 1}</span>
                         <div className="perfil-item-img">
                           {a.producto?.imagen_principal?.url
-                            ? <img src={`http://localhost:8000${a.producto.imagen_principal.url}`} alt={a.producto?.nombre} />
+                            ? <img src={`${import.meta.env.VITE_API_URL}${a.producto.imagen_principal.url}`} alt={a.producto?.nombre} />
                             : <div className="perfil-item-img-placeholder" />
                           }
                         </div>

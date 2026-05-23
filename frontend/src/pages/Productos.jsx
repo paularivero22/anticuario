@@ -76,12 +76,12 @@ export default function Productos() {
 
   // Cargar épocas y países al montar el componente
   useEffect(() => {
-    fetch('http://localhost:8000/api/epocas')
+    fetch(`${import.meta.env.VITE_API_URL}/api/epocas`)
       .then(res => res.json())
       .then(data => setEpocas(data))
       .catch(err => console.error('Error al cargar épocas:', err))
 
-    fetch('http://localhost:8000/api/paises')
+    fetch(`${import.meta.env.VITE_API_URL}/api/paises`)
       .then(res => res.json())
       .then(data => setPaises(data))
       .catch(err => console.error('Error al cargar países:', err))
@@ -89,14 +89,14 @@ export default function Productos() {
 
   // Cargar subcategorías y nombre de la categoría cada vez que cambia la categoría seleccionada
   useEffect(() => {
-    fetch('http://localhost:8000/api/categorias')
+    fetch(`${import.meta.env.VITE_API_URL}/api/categorias`)
       .then(res => res.json())
       .then(data => {
         const cat = data.find(c => c.id == categoriaId)
         if (cat) setNombreCategoria(cat.nombre)
       })
 
-    fetch(`http://localhost:8000/api/subcategorias?categoria_id=${categoriaId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/subcategorias?categoria_id=${categoriaId}`)
       .then(res => res.json())
       .then(subs => setSubcategorias(subs))
       .catch(err => console.error('Error al cargar subcategorías:', err))
@@ -104,7 +104,7 @@ export default function Productos() {
 
   useEffect(() => {
     setCargando(true)
-    let url = `http://localhost:8000/api/productos?categoria_id=${categoriaId}`
+    let url = `${import.meta.env.VITE_API_URL}/api/productos?categoria_id=${categoriaId}`
     if (orden) url += `&orden=${orden}`
 
     fetch(url)
@@ -297,7 +297,7 @@ export default function Productos() {
                   <div className="producto-img-wrapper">
                     {p.imagen_principal ? (
                       <img
-                        src={`http://localhost:8000${p.imagen_principal.url}`}
+                        src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
                         alt={p.nombre}
                         className="producto-img"
                         loading="lazy"

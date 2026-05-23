@@ -52,7 +52,7 @@ function SeccionCategorias() {
   // Carga todas las categorías con sus subcategorías desde el backend
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/admin/categorias', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setCategorias(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -76,7 +76,7 @@ function SeccionCategorias() {
   // Crea una nueva categoría con el nombre introducido y recarga la lista
   const crearCategoria = async () => {
     if (!nuevaCategoria.trim()) return
-    const res = await fetch('http://localhost:8000/api/admin/categorias', { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nuevaCategoria }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias`, { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nuevaCategoria }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al crear categoría')
     setNuevaCategoria(''); cargar(); msg(true, 'Categoría creada')
@@ -85,7 +85,7 @@ function SeccionCategorias() {
 
   // Guarda el nuevo nombre de una categoría que se está editando
   const guardarCategoria = async (id) => {
-    const res = await fetch(`http://localhost:8000/api/admin/categorias/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEditCategoria }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEditCategoria }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al actualizar')
     setEditandoCategoria(null); cargar(); msg(true, 'Categoría actualizada')
@@ -94,7 +94,7 @@ function SeccionCategorias() {
   // Elimina una categoría tras confirmación del usuario y recarga la lista
   const eliminarCategoria = async (id) => {
     if (!confirm('¿Eliminar esta categoría?')) return
-    const res = await fetch(`http://localhost:8000/api/admin/categorias/${id}`, { method: 'DELETE', headers: headers() })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias/${id}`, { method: 'DELETE', headers: headers() })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'Categoría eliminada')
@@ -104,7 +104,7 @@ function SeccionCategorias() {
   const crearSub = async (categoriaId) => {
     const nombre = nuevaSub[categoriaId] || ''
     if (!nombre.trim()) return
-    const res = await fetch('http://localhost:8000/api/admin/subcategorias', { method: 'POST', headers: headers(), body: JSON.stringify({ nombre, categoria_id: categoriaId }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/subcategorias`, { method: 'POST', headers: headers(), body: JSON.stringify({ nombre, categoria_id: categoriaId }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al crear subcategoría')
     setNuevaSub({ ...nuevaSub, [categoriaId]: '' }); cargar(); msg(true, 'Subcategoría creada')
@@ -112,7 +112,7 @@ function SeccionCategorias() {
 
   // Guarda el nuevo nombre de una subcategoría que se está editando
   const guardarSub = async (id) => {
-    const res = await fetch(`http://localhost:8000/api/admin/subcategorias/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEditSub }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/subcategorias/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEditSub }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al actualizar')
     setEditandoSub(null); cargar(); msg(true, 'Subcategoría actualizada')
@@ -121,7 +121,7 @@ function SeccionCategorias() {
   // Elimina una subcategoría tras confirmación del usuario y recarga la lista
   const eliminarSub = async (id) => {
     if (!confirm('¿Eliminar esta subcategoría?')) return
-    const res = await fetch(`http://localhost:8000/api/admin/subcategorias/${id}`, { method: 'DELETE', headers: headers() })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/subcategorias/${id}`, { method: 'DELETE', headers: headers() })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'Subcategoría eliminada')
@@ -257,7 +257,7 @@ function SeccionEpocas() {
   // Carga todas las épocas desde el backend
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/epocas', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/epocas`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setEpocas(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -271,7 +271,7 @@ function SeccionEpocas() {
   // Crea una nueva época con el nombre introducido y recarga la lista
   const crear = async () => {
     if (!nueva.trim()) return
-    const res = await fetch('http://localhost:8000/api/admin/epocas', { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nueva }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/epocas`, { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nueva }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al crear época')
     setNueva(''); cargar(); msg(true, 'Época creada')
@@ -279,7 +279,7 @@ function SeccionEpocas() {
 
   // Guarda el nuevo nombre de una época que se está editando
   const guardar = async (id) => {
-    const res = await fetch(`http://localhost:8000/api/admin/epocas/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEdit }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/epocas/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEdit }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al actualizar')
     setEditando(null); cargar(); msg(true, 'Época actualizada')
@@ -288,7 +288,7 @@ function SeccionEpocas() {
   // Elimina una época tras confirmación del usuario y recarga la lista
   const eliminar = async (id) => {
     if (!confirm('¿Eliminar esta época?')) return
-    const res = await fetch(`http://localhost:8000/api/admin/epocas/${id}`, { method: 'DELETE', headers: headers() })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/epocas/${id}`, { method: 'DELETE', headers: headers() })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'Época eliminada')
@@ -359,7 +359,7 @@ function SeccionPaises() {
   // Carga todos los países desde el backend
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/paises', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/paises`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setPaises(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -373,7 +373,7 @@ function SeccionPaises() {
   // Crea un nuevo país con el nombre introducido y recarga la lista
   const crear = async () => {
     if (!nueva.trim()) return
-    const res = await fetch('http://localhost:8000/api/admin/paises', { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nueva }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/paises`, { method: 'POST', headers: headers(), body: JSON.stringify({ nombre: nueva }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al crear país')
     setNueva(''); cargar(); msg(true, 'País creado')
@@ -381,7 +381,7 @@ function SeccionPaises() {
 
   // Guarda el nuevo nombre de un país que se está editando
   const guardar = async (id) => {
-    const res = await fetch(`http://localhost:8000/api/admin/paises/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEdit }) })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/paises/${id}`, { method: 'PUT', headers: headers(), body: JSON.stringify({ nombre: nombreEdit }) })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al actualizar')
     setEditando(null); cargar(); msg(true, 'País actualizado')
@@ -390,7 +390,7 @@ function SeccionPaises() {
   // Elimina un país tras confirmación del usuario y recarga la lista
   const eliminar = async (id) => {
     if (!confirm('¿Eliminar este país?')) return
-    const res = await fetch(`http://localhost:8000/api/admin/paises/${id}`, { method: 'DELETE', headers: headers() })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/paises/${id}`, { method: 'DELETE', headers: headers() })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'País eliminado')
@@ -465,7 +465,7 @@ function SeccionUsuarios() {
   // Carga todos los usuarios desde el backend
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/admin/usuarios', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/usuarios`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setUsuarios(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -488,7 +488,7 @@ function SeccionUsuarios() {
   const cambiarRol = async (id, rolActual) => {
     const nuevoRol = rolActual === 'admin' ? 'cliente' : 'admin'
     if (!confirm(`¿Cambiar rol a "${nuevoRol}"?`)) return
-    const res = await fetch(`http://localhost:8000/api/admin/usuarios/${id}/rol`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/usuarios/${id}/rol`, {
       method: 'PUT', headers: headers(), body: JSON.stringify({ rol: nuevoRol })
     })
     const data = await res.json()
@@ -499,7 +499,7 @@ function SeccionUsuarios() {
   // Elimina un usuario tras confirmación. Solo se permite con usuarios que no son admin
   const eliminar = async (id) => {
     if (!confirm('¿Eliminar este usuario? Esta acción no se puede deshacer.')) return
-    const res = await fetch(`http://localhost:8000/api/admin/usuarios/${id}`, { method: 'DELETE', headers: headers() })
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/usuarios/${id}`, { method: 'DELETE', headers: headers() })
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'Usuario eliminado')
@@ -690,7 +690,7 @@ function SeccionReservas() {
 
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/admin/reservas', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/reservas`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setReservas(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -713,7 +713,7 @@ function SeccionReservas() {
   const cambiarEstado = async (id, estado) => {
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/reservas/${id}/estado`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/reservas/${id}/estado`, {
         method: 'PUT', headers: headers(), body: JSON.stringify({ estado })
       })
       const data = await res.json()
@@ -729,7 +729,7 @@ function SeccionReservas() {
     if (!nuevaFecha) return
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/reservas/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/reservas/${id}`, {
         method: 'PUT', headers: headers(), body: JSON.stringify({ fecha_recogida: nuevaFecha })
       })
       const data = await res.json()
@@ -960,7 +960,7 @@ function SeccionAlquileres() {
 
   const cargar = () => {
     setCargando(true)
-    fetch('http://localhost:8000/api/admin/alquileres', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/admin/alquileres`, { headers: headers() })
       .then(r => r.json())
       .then(d => { setAlquileres(d); setCargando(false) })
       .catch(() => setCargando(false))
@@ -983,7 +983,7 @@ function SeccionAlquileres() {
   const cambiarEstado = async (id, estado) => {
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/alquileres/${id}/estado`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/alquileres/${id}/estado`, {
         method: 'PUT', headers: headers(), body: JSON.stringify({ estado })
       })
       const data = await res.json()
@@ -997,7 +997,7 @@ function SeccionAlquileres() {
   const guardarFechas = async (id) => {
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/alquileres/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/alquileres/${id}`, {
         method: 'PUT', headers: headers(),
         body: JSON.stringify({ fecha_recogida: nuevaRecogida, fecha_devolucion: nuevaDevolucion })
       })
@@ -1268,10 +1268,10 @@ function SeccionProductos() {
   const cargar = () => {
     setCargando(true)
     Promise.all([
-      fetch('http://localhost:8000/api/admin/productos', { headers: headers() }).then(r => r.json()),
-      fetch('http://localhost:8000/api/admin/categorias', { headers: headers() }).then(r => r.json()),
-      fetch('http://localhost:8000/api/epocas', { headers: headers() }).then(r => r.json()),
-      fetch('http://localhost:8000/api/paises', { headers: headers() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/admin/productos`, { headers: headers() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/admin/categorias`, { headers: headers() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/epocas`, { headers: headers() }).then(r => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/paises`, { headers: headers() }).then(r => r.json()),
     ]).then(([prods, cats, eps, pais]) => {
       setProductos(prods)
       setCategorias(cats)
@@ -1300,7 +1300,7 @@ function SeccionProductos() {
     if (!confirm('¿Eliminar este producto? Esta acción no se puede deshacer.')) return
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/productos/${id}`, { method: 'DELETE', headers: headers() })
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/productos/${id}`, { method: 'DELETE', headers: headers() })
       const data = await res.json()
       if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
       cargar(); msg(true, 'Producto eliminado')
@@ -1318,7 +1318,7 @@ function SeccionProductos() {
     if (!confirm(`¿Cambiar estado a "${siguiente}"?`)) return
     setCambiando(id)
     try {
-      const res = await fetch(`http://localhost:8000/api/admin/productos/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/productos/${id}`, {
         method: 'PUT', headers: headers(), body: JSON.stringify({ estado: siguiente })
       })
       const data = await res.json()

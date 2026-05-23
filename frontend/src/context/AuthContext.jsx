@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
         window.location.href = '/'
 
         // llama al servidor en segundo plano para invalidar el token
-        fetch('http://localhost:8000/api/logout', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/logout`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
