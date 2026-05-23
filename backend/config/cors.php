@@ -24,6 +24,10 @@ return [
         'http://localhost:5173',
         'https://anticuario-b2dp.vercel.app',
     ],
+    
+    'allowed_origins_patterns' => [
+        '#^https://.*\.vercel\.app$#',
+    ],
 
     'allowed_origins_patterns' => [],
 
