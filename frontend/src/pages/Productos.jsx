@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import './Productos.css'
+import { getImagenUrl } from '../utils/imagen'
 
 export default function Productos() {
   const { categoriaId } = useParams()
@@ -297,7 +298,7 @@ export default function Productos() {
                   <div className="producto-img-wrapper">
                     {p.imagen_principal ? (
                       <img
-                        src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
+                        src={getImagenUrl(p.imagen_principal.url)}
                         alt={p.nombre}
                         className="producto-img"
                         loading="lazy"

@@ -13,6 +13,7 @@ class Imagen extends Model
 
     protected $fillable = [
         'url',
+        'public_id',
         'es_principal',
         'producto_id',
     ];

@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Imagen;
-use Illuminate\Support\Facades\Storage;
+use App\Services\CloudinaryService;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $cloudinary;
+
+    public function __construct(CloudinaryService $cloudinary)
+    {
+        $this->cloudinary = $cloudinary;
+    }
+
     public function index()
     {
-        // obtener todos los productos con su subcategoria, categoria, epoca, pais e imagen principal ordenados por fecha de creacion para ver los mas recientes primero
         $productos = Producto::with(['subcategoria.categoria', 'epoca', 'pais', 'imagenPrincipal'])
             ->orderBy('created_at', 'desc')
             ->get();
@@ -23,7 +26,6 @@ class ProductoController extends Controller
         return response()->json($productos);
     }
 
-    // Crear un producto
     public function store(Request $request)
     {
         $request->validate([
@@ -47,10 +49,10 @@ class ProductoController extends Controller
             'nombre'           => $request->nombre,
             'descripcion'      => $request->descripcion,
             'precio'           => $request->precio,
-            'estado'           => $request->estado ?? 'disponible', // estado por defecto disponible
-            'destacado'        => $request->destacado ?? false, // no es destacado por defecto
-            'permite_reserva'  => $request->permite_reserva ?? false, // no permite reserva por defecto
-            'permite_alquiler' => $request->permite_alquiler ?? false, // no permite alquiler por defecto
+            'estado'           => $request->estado ?? 'disponible',
+            'destacado'        => $request->destacado ?? false,
+            'permite_reserva'  => $request->permite_reserva ?? false,
+            'permite_alquiler' => $request->permite_alquiler ?? false,
             'subcategoria_id'  => $request->subcategoria_id,
             'pais_id'          => $request->pais_id,
             'epoca_id'         => $request->epoca_id,
@@ -58,14 +60,14 @@ class ProductoController extends Controller
             'materiales'       => $request->materiales,
         ]);
 
-        // Subir imágenes si las hay
         if ($request->hasFile('imagenes')) {
             foreach ($request->file('imagenes') as $index => $imagen) {
-                $path = $imagen->store('productos', 'public'); // se guardará en storage/app/public/productos
+                $resultado = $this->cloudinary->upload($imagen);
 
                 Imagen::create([
-                    'url'          => '/storage/' . $path,
-                    'es_principal' => $index === 0 ? true : false, // la primera imagen subida es la principal
+                    'url'          => $resultado['url'],
+                    'public_id'    => $resultado['public_id'],
+                    'es_principal' => $index === 0,
                     'producto_id'  => $producto->id,
                 ]);
             }
@@ -73,7 +75,7 @@ class ProductoController extends Controller
 
         return response()->json([
             'mensaje'  => 'Producto creado correctamente',
-            'producto' => $producto->load(['imagenes', 'subcategoria.categoria']), // cargar relaciones para devolver el producto con toda su información
+            'producto' => $producto->load(['imagenes', 'subcategoria.categoria']),
         ], 201);
     }
 
@@ -85,7 +87,6 @@ class ProductoController extends Controller
         return response()->json($producto);
     }
 
-    // Editar un producto
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -107,31 +108,21 @@ class ProductoController extends Controller
 
         $producto = Producto::findOrFail($id);
         $producto->update($request->only([
-            'nombre',
-            'descripcion',
-            'precio',
-            'estado',
-            'destacado',
-            'permite_reserva',
-            'permite_alquiler',
-            'subcategoria_id',
-            'pais_id',
-            'epoca_id',
-            'medidas',
-            'materiales',
+            'nombre', 'descripcion', 'precio', 'estado', 'destacado',
+            'permite_reserva', 'permite_alquiler', 'subcategoria_id',
+            'pais_id', 'epoca_id', 'medidas', 'materiales',
         ]));
 
-        // subir nuevas imágenes si las hay
         if ($request->hasFile('imagenes')) {
-            // comprueba si el producto ya tiene una imagen principal
             $esPrimera = !$producto->imagenes()->where('es_principal', true)->exists();
 
-            foreach ($request->file('imagenes') as $index => $imagen) { // guardar las imagenes nuevas en storage/productos
-                $path = $imagen->store('productos', 'public');
+            foreach ($request->file('imagenes') as $index => $imagen) {
+                $resultado = $this->cloudinary->upload($imagen);
 
                 Imagen::create([
-                    'url'          => '/storage/' . $path,
-                    'es_principal' => $esPrimera && $index === 0 ? true : false, // si no tenía imagen principal se guardará como principal la primera imagen de las nuevas
+                    'url'          => $resultado['url'],
+                    'public_id'    => $resultado['public_id'],
+                    'es_principal' => $esPrimera && $index === 0,
                     'producto_id'  => $producto->id,
                 ]);
             }
@@ -143,56 +134,46 @@ class ProductoController extends Controller
         ]);
     }
 
-    // Funcion para cambiar la imagen principal de un producto (botón "marcar como principal" en el frontend)
     public function cambiarImagenPrincipal(Request $request, $id)
     {
         $request->validate([
             'imagen_id' => 'required|exists:imagenes,id',
         ]);
 
-        // quitar imagen principal actual
-        Imagen::where('producto_id', $id)
-            ->update(['es_principal' => false]);
-
-        // marcar la nueva imagen principal
+        Imagen::where('producto_id', $id)->update(['es_principal' => false]);
         Imagen::where('id', $request->imagen_id)
             ->where('producto_id', $id)
             ->update(['es_principal' => true]);
 
-        return response()->json([
-            'mensaje' => 'Imagen principal actualizada correctamente',
-        ]);
+        return response()->json(['mensaje' => 'Imagen principal actualizada correctamente']);
     }
 
-    // Eliminar un producto
     public function destroy(string $id)
     {
         $producto = Producto::with('imagenes')->findOrFail($id);
 
-        // Eliminar imágenes del storage
         foreach ($producto->imagenes as $imagen) {
-            $path = str_replace('/storage/', '', $imagen->url);
-            Storage::disk('public')->delete($path);
+            if ($imagen->public_id) {
+                $this->cloudinary->delete($imagen->public_id);
+            }
             $imagen->delete();
         }
 
         $producto->delete();
 
-        return response()->json([
-            'mensaje' => 'Producto eliminado correctamente',
-        ]);
+        return response()->json(['mensaje' => 'Producto eliminado correctamente']);
     }
 
-    // Eliminar una imagen de un producto
     public function eliminarImagen($id)
     {
         $imagen = Imagen::findOrFail($id);
-        $path   = str_replace('/storage/', '', $imagen->url);
-        Storage::disk('public')->delete($path);
+
+        if ($imagen->public_id) {
+            $this->cloudinary->delete($imagen->public_id);
+        }
+
         $imagen->delete();
 
-        return response()->json([
-            'mensaje' => 'Imagen eliminada correctamente',
-        ]);
+        return response()->json(['mensaje' => 'Imagen eliminada correctamente']);
     }
 }

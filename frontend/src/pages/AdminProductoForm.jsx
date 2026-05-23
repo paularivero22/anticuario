@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './AdminProductoForm.css'
+import { getImagenUrl } from '../utils/imagen'
 
 const token = () => localStorage.getItem('token')
 const authHeaders = () => ({
@@ -232,7 +233,7 @@ export default function AdminProductoForm() {
           {/* Imagen principal */}
           <div className="apf-imagen-principal">
             {imagenPrincipal ? (
-              <img src={`${import.meta.env.VITE_API_URL}${imagenPrincipal.url}`} alt="Principal" className="apf-img-principal" />
+              <img src={getImagenUrl(imagenPrincipal.url)} alt="Principal" className="apf-img-principal" />
             ) : previsualizaciones.length > 0 ? (
               <img src={previsualizaciones[0]} alt="Principal" className="apf-img-principal" />
             ) : (
@@ -252,7 +253,7 @@ export default function AdminProductoForm() {
             <div className="apf-galeria">
               {imagenesVisibles.map(img => (
                 <div key={img.id} className={`apf-thumb ${imagenesAEliminar.includes(img.id) ? 'apf-thumb-eliminar' : ''} ${img.es_principal ? 'apf-thumb-principal' : ''}`}>
-                  <img src={`${import.meta.env.VITE_API_URL}${img.url}`} alt="" />
+                  <img src={getImagenUrl(img.url)} alt="" />
                   {img.es_principal && <span className="apf-thumb-badge">✓</span>}
                   {!img.es_principal && !imagenesAEliminar.includes(img.id) && esEdicion && (
                     <button className="apf-thumb-btn-principal" onClick={() => handleCambiarPrincipal(img.id)} title="Marcar como principal">

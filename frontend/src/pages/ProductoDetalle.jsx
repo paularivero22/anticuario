@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './ProductoDetalle.css'
+import { getImagenUrl } from '../utils/imagen'
 
 export default function ProductoDetalle() {
   const { id } = useParams()
@@ -259,7 +260,7 @@ export default function ProductoDetalle() {
                 <div className="modal-producto-info">
                   {producto.imagenes && producto.imagenes.length > 0 && (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}${producto.imagenes[0]?.url}`}
+                      src={getImagenUrl(producto.imagenes[0]?.url)}
                       alt={producto.nombre}
                       className="modal-producto-img"
                     />
@@ -353,7 +354,7 @@ export default function ProductoDetalle() {
                 <div className="modal-producto-info">
                   {producto.imagenes && producto.imagenes.length > 0 && (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}${producto.imagenes[0]?.url}`}
+                      src={getImagenUrl(producto.imagenes[0]?.url)}
                       alt={producto.nombre}
                       className="modal-producto-img"
                     />
@@ -450,7 +451,7 @@ export default function ProductoDetalle() {
           <button className="lightbox-cerrar" onClick={() => setLightboxAbierto(false)}>✕</button>
           <div className="lightbox-contenido" onClick={e => e.stopPropagation()}>
             <img
-              src={`${import.meta.env.VITE_API_URL}${producto.imagenes[imagenActual]?.url}`}
+              src={getImagenUrl(producto.imagenes[imagenActual]?.url)}
               alt={producto.nombre}
               className="lightbox-img"
             />
@@ -485,7 +486,7 @@ export default function ProductoDetalle() {
             {producto.imagenes && producto.imagenes.length > 0 ? (
               <>
                 <img
-                  src={`${import.meta.env.VITE_API_URL}${producto.imagenes[imagenActual]?.url}`}
+                  src={getImagenUrl(producto.imagenes[imagenActual]?.url)}
                   alt={producto.nombre}
                   className="detalle-img"
                 />
@@ -517,7 +518,7 @@ export default function ProductoDetalle() {
                   className={`detalle-miniatura ${imagenActual === index ? 'miniatura-activa' : ''}`}
                   onClick={() => setImagenActual(index)}
                 >
-                  <img src={`${import.meta.env.VITE_API_URL}${img.url}`} alt={`${producto.nombre} ${index + 1}`} />
+                  <img src={getImagenUrl(img.url)} alt={`${producto.nombre} ${index + 1}`} />
                 </div>
               ))}
             </div>
@@ -604,7 +605,7 @@ export default function ProductoDetalle() {
                 <div className="producto-img-wrapper">
                   {p.imagen_principal ? (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
+                      src={getImagenUrl(p.imagen_principal.url)}
                       alt={p.nombre}
                       className="producto-img"
                     />
