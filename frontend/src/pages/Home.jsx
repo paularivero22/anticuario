@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import './Home.css';
 import { useNavigate } from 'react-router-dom'
+import { getImagenUrl } from '../utils/imagen'
 
 export default function Home() {
   const [productos, setProductos] = useState([]);
@@ -78,7 +79,7 @@ export default function Home() {
               <div className="producto-img-wrapper">
                 {p.imagen_principal ? (
                   <img
-                    src={`${import.meta.env.VITE_API_URL}${p.imagen_principal.url}`}
+                    src={getImagenUrl(p.imagen_principal.url)}
                     alt={p.nombre}
                     className="producto-img"
                   />
