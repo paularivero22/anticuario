@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             PaisSeeder::class,
             UserSeeder::class,
             ProductoSeeder::class,
-            ImagenSeeder::class,
+            // ImagenSeeder::class,
         ]);
     }
 }
