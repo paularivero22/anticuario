@@ -103,9 +103,11 @@ export default function Home() {
           <div className="sobre-nosotros-grid">
             <div>
               <p className="section-eyebrow">Nuestra historia</p>
-              <h2 className="sobre-nosotros-title">40 años de historia</h2>
+              <h2 className="sobre-nosotros-title">39 años de historia</h2>
               <p className="sobre-nosotros-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae pellentesque magna, et mattis mi. Phasellus et consectetur felis. Cras sit amet hendrerit massa. Nam euismod augue non accumsan maximus.
+                Una historia que comienza en 1987 en una casa de indianos ubicada en Mortera,
+                nacida de una pasión por las antigüedades y el profundo respeto por la
+                memoria que cada pieza lleva consigo.
               </p>
               <button className="btn-primary" onClick={() => navigate('/sobre-nosotros')}>Sobre nosotros</button>
             </div>

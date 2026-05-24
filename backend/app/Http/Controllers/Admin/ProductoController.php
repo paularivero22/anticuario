@@ -26,6 +26,7 @@ class ProductoController extends Controller
         return response()->json($productos);
     }
 
+    // Crear un producto
     public function store(Request $request)
     {
         $request->validate([
@@ -49,10 +50,10 @@ class ProductoController extends Controller
             'nombre'           => $request->nombre,
             'descripcion'      => $request->descripcion,
             'precio'           => $request->precio,
-            'estado'           => $request->estado ?? 'disponible',
-            'destacado'        => $request->destacado ?? false,
-            'permite_reserva'  => $request->permite_reserva ?? false,
-            'permite_alquiler' => $request->permite_alquiler ?? false,
+            'estado'           => $request->estado ?? 'disponible', //estado por defecto disponible
+            'destacado'        => $request->destacado ?? false, // no es destacado por defecto
+            'permite_reserva'  => $request->permite_reserva ?? false, // no permite reserva por defecto
+            'permite_alquiler' => $request->permite_alquiler ?? false, // no permite alquiler por defecto
             'subcategoria_id'  => $request->subcategoria_id,
             'pais_id'          => $request->pais_id,
             'epoca_id'         => $request->epoca_id,

@@ -1,0 +1,127 @@
+
+.sn-page {
+    background: var(--color-background);
+    padding-bottom: 6em;
+}
+
+/* ===== CABECERA ===== */
+.sn-cabecera {
+    text-align: center;
+    padding: 5em 2em 3em;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+.sn-subtitulo {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-golden);
+    margin-bottom: 0.75em;
+}
+
+.sn-titulo {
+    font-size: 3.5em;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-espresso);
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+}
+
+.sn-linea {
+    width: 3em;
+    height: 1px;
+    background: var(--color-golden);
+    margin: 0 auto;
+}
+
+/* ===== BLOQUES ===== */
+.sn-bloque {
+    display: grid;
+    gap: 0;
+    max-width: 75em;
+    margin: 0 auto;
+    padding: 3em 5em;
+    align-items: center;
+}
+
+.sn-bloque-derecha {
+    grid-template-columns: 1fr 1fr;
+}
+
+.sn-bloque-izquierda {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* ===== TEXTO ===== */
+.sn-texto {
+    padding: 2em 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+}
+
+.sn-texto p {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.938em;
+    color: var(--color-text);
+    line-height: 1.9;
+}
+
+/* ===== FOTO ===== */
+.sn-foto-wrapper {
+    overflow: hidden;
+}
+
+.sn-foto {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.sn-foto1 {
+    background-image: url('/imagenes/foto-antigua.jpg');
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 16 / 9;
+}
+
+/* placeholder mientras no hay foto real */
+.sn-foto-placeholder {
+    background: var(--color-border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.875em;
+    color: var(--color-text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 56em) {
+    .sn-bloque,
+    .sn-bloque-derecha,
+    .sn-bloque-izquierda {
+        grid-template-columns: 1fr;
+        padding: 2em 1.5em;
+    }
+
+    .sn-bloque-izquierda .sn-foto-wrapper {
+        order: -1;
+    }
+
+    .sn-texto {
+        padding: 1.5em 0;
+    }
+
+    .sn-titulo {
+        font-size: 2.5em;
+    }
+
+    .sn-cita blockquote {
+        font-size: 1.2em;
+    }
+}
