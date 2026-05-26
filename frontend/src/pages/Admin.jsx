@@ -595,7 +595,7 @@ function SeccionUsuarios() {
       </div>
 
       {/* ORDENAR POR: EN PANTALLAS PEQUEÑAS */}
-      <div className="admin-ordenar-wrapper">
+      <div className="admin-ordenar-wrapper admin-ordenar-movil">
         <label className="admin-label">Ordenar por:</label>
         <select className="admin-select" value={`${orden.col}-${orden.dir}`}
           onChange={e => {

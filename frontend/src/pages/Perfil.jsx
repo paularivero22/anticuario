@@ -288,7 +288,7 @@ export default function Perfil() {
               <div className="perfil-form">
                 {[
                   { label: 'Contraseña actual', key: 'password_actual', placeholder: '••••••••' },
-                  { label: 'Nueva contraseña', key: 'password_nuevo', placeholder: 'Mínimo 6 caracteres' },
+                  { label: 'Nueva contraseña', key: 'password_nuevo', placeholder: 'Mínimo 8 caracteres' },
                   { label: 'Confirmar nueva contraseña', key: 'password_nuevo_confirmation', placeholder: 'Repite la contraseña' },
                 ].map(({ label, key, placeholder }) => (
                   <div className="perfil-field" key={key}>
