@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Alquiler;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AlquilerSolicitadoCliente;
+use App\Mail\AlquilerAceptadoCancelado;
+use App\Mail\NuevaSolicitudAdmin;
+use App\Mail\CancelacionAdmin;
 
 class AlquilerController extends Controller
 {
@@ -51,6 +56,8 @@ class AlquilerController extends Controller
         $alquiler->load('producto');
         $alquiler->producto->update(['estado' => 'alquilado']);
 
+        Mail::to($alquiler->usuario->email)->send(new AlquilerSolicitadoCliente($alquiler->load(['usuario', 'producto'])));
+        Mail::to('antiguedadesmortera@gmail.com')->send(new NuevaSolicitudAdmin('alquiler', $alquiler->load(['usuario', 'producto'])));
 
         return response()->json([
             'mensaje'   => 'Alquiler solicitado correctamente',
@@ -98,7 +105,7 @@ class AlquilerController extends Controller
             ->where('usuario_id', $request->user()->id)
             ->firstOrFail();
 
-        if (!in_array($alquiler->estado, ['solicitado', 'aceptado'])) { 
+        if (!in_array($alquiler->estado, ['solicitado', 'aceptado'])) {
             // solo se pueden cancelar los alquileres que estén en estado solicitado o aceptado
             return response()->json([
                 'mensaje' => 'No se puede cancelar este alquiler',
@@ -111,6 +118,9 @@ class AlquilerController extends Controller
         $alquiler->load('producto');
         $alquiler->producto->update(['estado' => 'disponible']);
 
+        Mail::to($alquiler->usuario->email)->send(new AlquilerAceptadoCancelado($alquiler->load(['usuario', 'producto'])));
+        Mail::to('antiguedadesmortera@gmail.com')->send(new CancelacionAdmin('alquiler', $alquiler->load(['usuario', 'producto'])));
+        
         return response()->json([
             'mensaje' => 'Alquiler cancelado correctamente',
         ]);

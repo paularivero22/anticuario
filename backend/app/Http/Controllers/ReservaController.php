@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservaSolicitadaCliente;
+use App\Mail\CancelacionAdmin;
+use App\Mail\NuevaSolicitudAdmin;
 
 class ReservaController extends Controller
 {
@@ -55,6 +59,11 @@ class ReservaController extends Controller
         // actualizar el estado del producto señalado a "reservado" (no se verá en la página)
         $reserva->load('producto');
         $reserva->producto->update(['estado' => 'reservado']);
+
+        // correo al cliente
+        Mail::to($reserva->usuario->email)->send(new ReservaSolicitadaCliente($reserva->load(['usuario', 'producto'])));
+        // correo al admin
+        Mail::to('antiguedadesmortera@gmail.com')->send(new NuevaSolicitudAdmin('reserva', $reserva->load(['usuario', 'producto'])));
 
         return response()->json([
             'mensaje' => 'Reserva solicitada correctamente',
@@ -113,6 +122,10 @@ class ReservaController extends Controller
         // actualizar el estado del producto señalado a "disponible" (se volverá a ver en la página)
         $reserva->load('producto');
         $reserva->producto->update(['estado' => 'disponible']);
+
+        // correos
+        Mail::to($reserva->usuario->email)->send(new \App\Mail\ReservaAceptadaCancelada($reserva->load(['usuario', 'producto'])));
+        Mail::to('antiguedadesmortera@gmail.com')->send(new CancelacionAdmin('reserva', $reserva->load(['usuario', 'producto'])));
 
         return response()->json([
             'mensaje' => 'Reserva cancelada correctamente',

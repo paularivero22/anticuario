@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Alquiler;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AlquilerAceptadoCancelado;
+use App\Mail\AlquilerCompletado;
 
 class AlquilerController extends Controller
 {
@@ -54,6 +57,16 @@ class AlquilerController extends Controller
         disponible (se verá en la pagina como disponible) */
         } elseif (in_array($request->estado, ['cancelado', 'completado', 'expirado'])) {
             $alquiler->producto->update(['estado' => 'disponible']);
+        }
+
+        $alquiler->load(['usuario', 'producto']);
+
+        if (in_array($request->estado, ['aceptado', 'cancelado'])) {
+            Mail::to($alquiler->usuario->email)->send(new AlquilerAceptadoCancelado($alquiler));
+        }
+
+        if ($request->estado === 'completado') {
+            Mail::to($alquiler->usuario->email)->send(new AlquilerCompletado($alquiler));
         }
 
         return response()->json([

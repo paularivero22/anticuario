@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservaAceptadaCancelada;
+use App\Mail\ReservaCompletada;
 
 class ReservaController extends Controller
 {
@@ -50,6 +53,16 @@ class ReservaController extends Controller
         pasa a inactivo (no se podrá volver a ver en la pagina pero seguirá en la base de datos) */
         } elseif ($request->estado === 'completada') {
             $reserva->producto->update(['estado' => 'inactivo']);
+        }
+
+        $reserva->load(['usuario', 'producto']);
+
+        if (in_array($request->estado, ['aceptada', 'cancelada'])) {
+            Mail::to($reserva->usuario->email)->send(new ReservaAceptadaCancelada($reserva));
+        }
+
+        if ($request->estado === 'completada') {
+            Mail::to($reserva->usuario->email)->send(new ReservaCompletada($reserva));
         }
 
         return response()->json([
