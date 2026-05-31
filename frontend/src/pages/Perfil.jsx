@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
 import './Perfil.css'
+import { getImagenUrl } from '../utils/imagen'
 
 // colores para el icono de estado de reservas y alquileres
 const COLORES_ESTADO = {
@@ -334,7 +335,7 @@ export default function Perfil() {
                         <span className="perfil-item-num">{i + 1}</span>
                         <div className="perfil-item-img">
                           {r.producto?.imagen_principal?.url
-                            ? <img src={`${import.meta.env.VITE_API_URL}${r.producto.imagen_principal.url}`} alt={r.producto?.nombre} />
+                            ? <img src={getImagenUrl(r.producto.imagen_principal.url)} alt={r.producto?.nombre} />
                             : <div className="perfil-item-img-placeholder" />
                           }
                         </div>
@@ -388,7 +389,7 @@ export default function Perfil() {
                         <span className="perfil-item-num">{i + 1}</span>
                         <div className="perfil-item-img">
                           {a.producto?.imagen_principal?.url
-                            ? <img src={`${import.meta.env.VITE_API_URL}${a.producto.imagen_principal.url}`} alt={a.producto?.nombre} />
+                            ? <img src={getImagenUrl(a.producto.imagen_principal.url)} alt={a.producto?.nombre} />
                             : <div className="perfil-item-img-placeholder" />
                           }
                         </div>
