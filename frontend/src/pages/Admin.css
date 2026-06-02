@@ -826,9 +826,10 @@ svg {
     border-top: 1px solid var(--color-border-light);
   }
 
-  .admin-nueva-fila,
-  .admin-nueva-sub-fila {
-    flex-direction: column;
+  .admin-nueva-fila .admin-input,
+  .admin-nueva-fila .admin-btn-add,
+  .admin-nueva-sub-fila .admin-input,
+  .admin-nueva-sub-fila .admin-btn-add {
     width: 100%;
   }
 
@@ -936,5 +937,9 @@ svg {
     grid-template-columns: 1fr;
     gap: 0.5em;
     padding: 1em 0;
+  }
+
+  .admin-prod-add {
+    width: 100%;
   }
 }
