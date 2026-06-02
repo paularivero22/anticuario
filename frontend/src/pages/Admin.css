@@ -826,6 +826,12 @@ svg {
     border-top: 1px solid var(--color-border-light);
   }
 
+  .admin-nueva-fila,
+  .admin-nueva-sub-fila {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .admin-nueva-fila .admin-input,
   .admin-nueva-fila .admin-btn-add,
   .admin-nueva-sub-fila .admin-input,

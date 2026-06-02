@@ -296,7 +296,7 @@ export default function ProductoDetalle() {
                         <span>Prefiero ponerme en contacto con la tienda</span>
                       </label>
                       {prefiereLlamada && (
-                        <p className="modal-telefono">Telf: 123 45 67 89</p>
+                        <p className="modal-telefono">Telf: 626 11 15 56</p>
                       )}
                     </div>
                   </div>
@@ -405,7 +405,7 @@ export default function ProductoDetalle() {
                         <span>Prefiero ponerme en contacto con la tienda</span>
                       </label>
                       {prefiereLlamadaAlquiler && (
-                        <p className="modal-telefono">Telf: 123 45 67 89</p>
+                        <p className="modal-telefono">Telf: 626 11 15 56</p>
                       )}
                     </div>
                   </div>
