@@ -671,10 +671,10 @@ function SeccionUsuarios() {
             </div>
 
             <div className="modal-botones" style={{ marginTop: '1.5em' }}>
-              <button className="btn-primary modal-btn" onClick={crearUsuario} disabled={creando}>
-                {creando ? 'Creando...' : 'Crear'}
+              <button className="admin-btn-add" onClick={crearUsuario} disabled={creando}>
+                {creando ? 'Creando...' : 'Crear Usuario'}
               </button>
-              <button className="btn-outline-dark modal-btn" onClick={() => setModalNuevo(false)}>
+              <button className="admin-btn-limpiar" onClick={() => setModalNuevo(false)}>
                 Cancelar
               </button>
             </div>
