@@ -672,7 +672,7 @@ function SeccionUsuarios() {
 
             <div className="modal-botones" style={{ marginTop: '1.5em' }}>
               <button className="btn-primary modal-btn" onClick={crearUsuario} disabled={creando}>
-                {creando ? 'Creando...' : 'Crear usuario'}
+                {creando ? 'Creando...' : 'Crear'}
               </button>
               <button className="btn-outline-dark modal-btn" onClick={() => setModalNuevo(false)}>
                 Cancelar
@@ -735,7 +735,7 @@ function SeccionUsuarios() {
         </div>
       )}
 
-      <span className="aviso">* Para editar los datos de un usuario debes iniciar sesión y editar tus datos en Mi Perfil</span>
+      <span className="aviso">* No puedes editar los datos de un usuario, cada usuario deberá iniciar sesión y editar sus propios datos en Mi Perfil</span>
     </div>
   )
 }
