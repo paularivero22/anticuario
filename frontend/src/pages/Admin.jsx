@@ -1529,6 +1529,29 @@ function SeccionProductos() {
         Nuevo producto
       </button>
 
+      {/* ORDENAR EN MÓVIL */}
+      <div className="admin-ordenar-wrapper admin-ordenar-movil">
+        <label className="admin-label">Ordenar por:</label>
+        <select className="admin-select" value={`${orden.col}-${orden.dir}`}
+          onChange={e => {
+            const [col, dir] = e.target.value.split('-')
+            setOrden({ col, dir })
+          }}>
+          <option value="id-asc">ID ↑</option>
+          <option value="id-desc">ID ↓</option>
+          <option value="nombre-asc">Nombre A→Z</option>
+          <option value="nombre-desc">Nombre Z→A</option>
+          <option value="precio-asc">Precio ↑</option>
+          <option value="precio-desc">Precio ↓</option>
+          <option value="estado-asc">Estado A→Z</option>
+          <option value="estado-desc">Estado Z→A</option>
+          <option value="categoria-asc">Categoría A→Z</option>
+          <option value="categoria-desc">Categoría Z→A</option>
+          <option value="subcategoria-asc">Subcategoría A→Z</option>
+          <option value="subcategoria-desc">Subcategoría Z→A</option>
+        </select>
+      </div>
+
       {/* TABLA */}
       {cargando ? <p className="admin-cargando">Cargando...</p> : (
         <div className="admin-tabla-wrapper">

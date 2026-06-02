@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="footer-grid">
                 <div className="footer-col">
                     <h4>Ayuda</h4>
-                    <span className="footer-link">FAQ</span>
+                    {/* <span className="footer-link">FAQ</span> */}
                     {/* <span className="footer-link">Guía de resevas</span>
                     <span className="footer-link">Guía de alquileres</span> */}
                     <span className="footer-link" onClick={() => navigate('/contacto')}>Contactar</span>
