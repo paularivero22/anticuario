@@ -460,6 +460,14 @@ function SeccionUsuarios() {
   const [filtroTelefono, setFiltroTelefono] = useState('')
   const [listaFiltrada, setListaFiltrada] = useState(null)
 
+  const [modalNuevo, setModalNuevo] = useState(false)
+  const [nuevoNombre, setNuevoNombre] = useState('')
+  const [nuevoEmail, setNuevoEmail] = useState('')
+  const [nuevoPassword, setNuevoPassword] = useState('')
+  const [nuevoTelefono, setNuevoTelefono] = useState('')
+  const [nuevoRol, setNuevoRol] = useState('cliente')
+  const [creando, setCreando] = useState(false)
+
   const [orden, setOrden] = useState({ col: 'name', dir: 'asc' })
 
   // Carga todos los usuarios desde el backend
@@ -503,6 +511,30 @@ function SeccionUsuarios() {
     const data = await res.json()
     if (!res.ok) return msg(false, data.mensaje || 'Error al eliminar')
     cargar(); msg(true, 'Usuario eliminado')
+  }
+
+  const crearUsuario = async () => {
+    setCreando(true)
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/usuarios`, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify({
+          name: nuevoNombre,
+          email: nuevoEmail,
+          password: nuevoPassword,
+          telefono: nuevoTelefono,
+          rol: nuevoRol,
+        })
+      })
+      const data = await res.json()
+      if (!res.ok) return msg(false, data.message || data.mensaje || 'Error al crear usuario')
+      setModalNuevo(false)
+      setNuevoNombre(''); setNuevoEmail(''); setNuevoPassword('')
+      setNuevoTelefono(''); setNuevoRol('cliente')
+      cargar(); msg(true, 'Usuario creado correctamente')
+    } catch { msg(false, 'Error de conexión') }
+    finally { setCreando(false) }
   }
 
   // Aplica los filtros activos sobre la lista completa de usuarios y guarda el resultado.
@@ -613,6 +645,43 @@ function SeccionUsuarios() {
         </select>
       </div>
 
+      <button className="admin-btn-add" onClick={() => setModalNuevo(true)}>
+        + Nuevo usuario
+      </button>
+
+      {modalNuevo && (
+        <div className="modal-overlay" onClick={() => setModalNuevo(false)}>
+          <div className="modal-card" onClick={e => e.stopPropagation()}>
+            <button className="modal-cerrar" onClick={() => setModalNuevo(false)}>✕</button>
+            <h2 className="modal-titulo">Nuevo usuario</h2>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75em', marginTop: '1em' }}>
+              <input className="admin-input" placeholder="Nombre *" value={nuevoNombre}
+                onChange={e => setNuevoNombre(e.target.value)} />
+              <input className="admin-input" placeholder="Email *" type="email" value={nuevoEmail}
+                onChange={e => setNuevoEmail(e.target.value)} />
+              <input className="admin-input" placeholder="Contraseña * (mín. 8 caracteres)" type="password" value={nuevoPassword}
+                onChange={e => setNuevoPassword(e.target.value)} />
+              <input className="admin-input" placeholder="Teléfono (opcional)" value={nuevoTelefono}
+                onChange={e => setNuevoTelefono(e.target.value)} />
+              <select className="admin-select" value={nuevoRol} onChange={e => setNuevoRol(e.target.value)}>
+                <option value="cliente">Cliente</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div className="modal-botones" style={{ marginTop: '1.5em' }}>
+              <button className="btn-primary modal-btn" onClick={crearUsuario} disabled={creando}>
+                {creando ? 'Creando...' : 'Crear usuario'}
+              </button>
+              <button className="btn-outline-dark modal-btn" onClick={() => setModalNuevo(false)}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* TABLA */}
       {cargando ? <p className="admin-cargando">Cargando...</p> : (
         <div className="admin-tabla-wrapper">
@@ -666,7 +735,6 @@ function SeccionUsuarios() {
         </div>
       )}
 
-      <span className="aviso">* Para añadir un nuevo usuario debes registrarte en la Página de Registro</span>
       <span className="aviso">* Para editar los datos de un usuario debes iniciar sesión y editar tus datos en Mi Perfil</span>
     </div>
   )
@@ -1537,12 +1605,12 @@ function SeccionProductos() {
             const [col, dir] = e.target.value.split('-')
             setOrden({ col, dir })
           }}>
-          <option value="id-asc">ID ↑</option>
-          <option value="id-desc">ID ↓</option>
+          <option value="id-asc">ID menor a mayor</option>
+          <option value="id-desc">ID mayor a menor</option>
           <option value="nombre-asc">Nombre A→Z</option>
           <option value="nombre-desc">Nombre Z→A</option>
-          <option value="precio-asc">Precio ↑</option>
-          <option value="precio-desc">Precio ↓</option>
+          <option value="precio-asc">Precio menor a mayor</option>
+          <option value="precio-desc">Precio mayor a menor</option>
           <option value="estado-asc">Estado A→Z</option>
           <option value="estado-desc">Estado Z→A</option>
           <option value="categoria-asc">Categoría A→Z</option>

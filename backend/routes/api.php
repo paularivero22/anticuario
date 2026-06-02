@@ -74,13 +74,14 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::get('/alquileres', [AdminAlquilerController::class, 'index']);
     Route::put('/alquileres/{id}/estado', [AdminAlquilerController::class, 'cambiarEstado']);
     Route::put('/alquileres/{id}', [AdminAlquilerController::class, 'update']);
-    
+
     // Usuarios
     Route::get('/usuarios', [AdminUserController::class, 'index']);
+    Route::post('/usuarios', [AdminUserController::class, 'store']);
     Route::get('/usuarios/{id}', [AdminUserController::class, 'show']);
     Route::delete('/usuarios/{id}', [AdminUserController::class, 'destroy']);
     Route::put('/usuarios/{id}/rol', [AdminUserController::class, 'cambiarRol']);
-
+    
     // Categorías
     Route::get('/categorias', [AdminCategoriaController::class, 'index']);
     Route::post('/categorias', [AdminCategoriaController::class, 'store']);

@@ -63,4 +63,29 @@ class UserController extends Controller
             'mensaje' => 'Usuario eliminado correctamente',
         ]);
     }
+
+    // Crear un nuevo usuario desde el panel de administración
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'telefono' => 'nullable|string|max:20',
+            'rol'      => 'required|in:cliente,admin',
+        ]);
+
+        $usuario = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+            'telefono' => $request->telefono,
+            'rol'      => $request->rol,
+        ]);
+
+        return response()->json([
+            'mensaje'  => 'Usuario creado correctamente',
+            'usuario'  => $usuario,
+        ], 201);
+    }
 }
