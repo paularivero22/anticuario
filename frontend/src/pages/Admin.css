@@ -427,13 +427,6 @@ svg {
   color: var(--color-golden);
 }
 
-/* ===== SCROLL HORIZONTAL TABLA PRODUCTOS ===== */
-.admin-tabla-wrapper-prod {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-
 /* ===== CATEGORÍAS ===== */
 .admin-categoria-block {
   margin-bottom: 2.5em;
@@ -955,5 +948,17 @@ svg {
   .admin-prod-add,
   .admin-user-add {
     width: 100%;
+  }
+}
+
+@media (min-width: 48em) and (max-width: 90em) {
+  .admin-tabla-wrapper-prod {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-tabla-wrapper-prod .admin-tabla-header-prod,
+  .admin-tabla-wrapper-prod .admin-item-prod {
+    min-width: 1400px;
   }
 }
