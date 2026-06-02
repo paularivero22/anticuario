@@ -176,7 +176,8 @@
 
 /* ===== BOTONES ===== */
 .admin-btn-add,
-.admin-prod-add {
+.admin-prod-add,
+.admin-user-add {
   font-family: 'Jost', sans-serif;
   font-size: 0.85em;
   letter-spacing: 0.05em;
@@ -198,7 +199,8 @@
   font-size: 0.75em;
 }
 
-.admin-prod-add {
+.admin-prod-add,
+.admin-user-add {
   width: 20%;
 }
 
@@ -285,7 +287,6 @@ svg {
 .admin-btn-cancel:hover {
   color: var(--color-espresso);
 }
-
 
 /* ===== FILAS DE EDICIÓN Y AÑADIR ===== */
 .admin-nueva-fila {
@@ -945,7 +946,8 @@ svg {
     padding: 1em 0;
   }
 
-  .admin-prod-add {
+  .admin-prod-add,
+  .admin-user-add {
     width: 100%;
   }
 }

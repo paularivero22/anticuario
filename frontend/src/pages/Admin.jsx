@@ -645,7 +645,7 @@ function SeccionUsuarios() {
         </select>
       </div>
 
-      <button className="admin-btn-add" onClick={() => setModalNuevo(true)}>
+      <button className="admin-user-add" onClick={() => setModalNuevo(true)}>
         + Nuevo usuario
       </button>
 
