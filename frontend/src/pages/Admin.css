@@ -790,7 +790,7 @@ svg {
 
   .admin-page {
     padding: 1.5em 1em 3em;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .admin-layout {
@@ -951,14 +951,3 @@ svg {
   }
 }
 
-@media (min-width: 48em) and (max-width: 90em) {
-  .admin-tabla-wrapper-prod {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .admin-tabla-wrapper-prod .admin-tabla-header-prod,
-  .admin-tabla-wrapper-prod .admin-item-prod {
-    min-width: 1400px;
-  }
-}

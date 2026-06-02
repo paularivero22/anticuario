@@ -1622,108 +1622,112 @@ function SeccionProductos() {
 
       {/* TABLA */}
       {cargando ? <p className="admin-cargando">Cargando...</p> : (
-        <div className="admin-tabla-wrapper admin-tabla-wrapper-prod">
-          <div className="admin-tabla-header admin-tabla-header-prod">
-            {thS('id', 'ID')}
-            {thS('nombre', 'Nombre')}
-            <span className="admin-tabla-th admin-th-rv">Descripción</span>
-            {thS('precio', 'Precio')}
-            {thS('estado', 'Estado')}
-            <span className="admin-tabla-th admin-th-rv">Dest.</span>
-            <span className="admin-tabla-th admin-th-rv">Reserva</span>
-            <span className="admin-tabla-th admin-th-rv">Alquiler</span>
-            {thS('categoria', 'Categoría')}
-            {thS('subcategoria', 'Subcategoría')}
-            <span className="admin-tabla-th admin-th-rv">País</span>
-            <span className="admin-tabla-th admin-th-rv">Época</span>
-            <span className="admin-tabla-th admin-th-rv">Medidas</span>
-            <span className="admin-tabla-th admin-th-rv">Materiales</span>
-            <span className="admin-tabla-th admin-th-rv admin-th-rv-acciones">Acciones</span>
-          </div>
-          {listaOrdenada.map(p => {
-            const colEstado = COLORES_ESTADO_P[p.estado] || { color: '#888', bg: '#f5f5f5' }
-            const cargandoEste = cambiando === p.id
-            return (
-              <div key={p.id} className="admin-item admin-item-prod">
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">ID:</span>
-                  {p.id}
-                </span>
-                <span className="admin-cell-rv admin-cell-prod-nombre">
-                  <span className="admin-cell-label">Nombre:</span>
-                  {p.nombre}
-                </span>
-                <span className="admin-cell-rv admin-cell-prod-desc">
-                  <span className="admin-cell-label">Descripción:</span>
-                  <span className="admin-cell-truncate">{p.descripcion || '—'}</span>
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Precio:</span>
-                  {p.precio != null ? `${parseFloat(p.precio).toFixed(2)} €` : '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Estado:</span>
-                  <span className="admin-estado-badge" style={{ color: colEstado.color, background: colEstado.bg }}>
-                    {p.estado ? p.estado.charAt(0).toUpperCase() + p.estado.slice(1) : '—'}
-                  </span>
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Destacado:</span>
-                  {p.destacado ? 'Sí' : 'No'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Reserva:</span>
-                  {p.permite_reserva ? 'Sí' : 'No'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Alquiler:</span>
-                  {p.permite_alquiler ? 'Sí' : 'No'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Categoría:</span>
-                  {p.subcategoria?.categoria?.nombre || '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Subcategoría:</span>
-                  {p.subcategoria?.nombre || '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">País:</span>
-                  {p.pais?.nombre || '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Época:</span>
-                  {p.epoca?.nombre || '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Medidas:</span>
-                  {p.medidas || '—'}
-                </span>
-                <span className="admin-cell-rv">
-                  <span className="admin-cell-label">Materiales:</span>
-                  {p.materiales || '—'}
-                </span>
-                <div className="admin-cell-rv admin-cell-rv-acciones">
-                  <button className="admin-btn-edit" onClick={() => navigate(`/admin/producto/${p.id}`)}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    Editar
-                  </button>
-                  <button className="admin-btn-delete" disabled={cargandoEste}
-                    onClick={() => eliminar(p.id)}>
-                    Eliminar
-                  </button>
-                </div>
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <div style={{ minWidth: '1400px' }}>
+            <div className="admin-tabla-wrapper">
+              <div className="admin-tabla-header admin-tabla-header-prod">
+                {thS('id', 'ID')}
+                {thS('nombre', 'Nombre')}
+                <span className="admin-tabla-th admin-th-rv">Descripción</span>
+                {thS('precio', 'Precio')}
+                {thS('estado', 'Estado')}
+                <span className="admin-tabla-th admin-th-rv">Dest.</span>
+                <span className="admin-tabla-th admin-th-rv">Reserva</span>
+                <span className="admin-tabla-th admin-th-rv">Alquiler</span>
+                {thS('categoria', 'Categoría')}
+                {thS('subcategoria', 'Subcategoría')}
+                <span className="admin-tabla-th admin-th-rv">País</span>
+                <span className="admin-tabla-th admin-th-rv">Época</span>
+                <span className="admin-tabla-th admin-th-rv">Medidas</span>
+                <span className="admin-tabla-th admin-th-rv">Materiales</span>
+                <span className="admin-tabla-th admin-th-rv admin-th-rv-acciones">Acciones</span>
               </div>
-            )
-          })}
+              {listaOrdenada.map(p => {
+                const colEstado = COLORES_ESTADO_P[p.estado] || { color: '#888', bg: '#f5f5f5' }
+                const cargandoEste = cambiando === p.id
+                return (
+                  <div key={p.id} className="admin-item admin-item-prod">
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">ID:</span>
+                      {p.id}
+                    </span>
+                    <span className="admin-cell-rv admin-cell-prod-nombre">
+                      <span className="admin-cell-label">Nombre:</span>
+                      {p.nombre}
+                    </span>
+                    <span className="admin-cell-rv admin-cell-prod-desc">
+                      <span className="admin-cell-label">Descripción:</span>
+                      <span className="admin-cell-truncate">{p.descripcion || '—'}</span>
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Precio:</span>
+                      {p.precio != null ? `${parseFloat(p.precio).toFixed(2)} €` : '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Estado:</span>
+                      <span className="admin-estado-badge" style={{ color: colEstado.color, background: colEstado.bg }}>
+                        {p.estado ? p.estado.charAt(0).toUpperCase() + p.estado.slice(1) : '—'}
+                      </span>
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Destacado:</span>
+                      {p.destacado ? 'Sí' : 'No'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Reserva:</span>
+                      {p.permite_reserva ? 'Sí' : 'No'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Alquiler:</span>
+                      {p.permite_alquiler ? 'Sí' : 'No'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Categoría:</span>
+                      {p.subcategoria?.categoria?.nombre || '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Subcategoría:</span>
+                      {p.subcategoria?.nombre || '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">País:</span>
+                      {p.pais?.nombre || '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Época:</span>
+                      {p.epoca?.nombre || '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Medidas:</span>
+                      {p.medidas || '—'}
+                    </span>
+                    <span className="admin-cell-rv">
+                      <span className="admin-cell-label">Materiales:</span>
+                      {p.materiales || '—'}
+                    </span>
+                    <div className="admin-cell-rv admin-cell-rv-acciones">
+                      <button className="admin-btn-edit" onClick={() => navigate(`/admin/producto/${p.id}`)}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        Editar
+                      </button>
+                      <button className="admin-btn-delete" disabled={cargandoEste}
+                        onClick={() => eliminar(p.id)}>
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
 
-          {listaOrdenada.length === 0 && (
-            <p className="admin-vacio" style={{ padding: '1em 0' }}>No hay productos con ese filtro.</p>
-          )}
+              {listaOrdenada.length === 0 && (
+                <p className="admin-vacio" style={{ padding: '1em 0' }}>No hay productos con ese filtro.</p>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
