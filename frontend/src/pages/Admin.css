@@ -790,7 +790,7 @@ svg {
 
   .admin-page {
     padding: 1.5em 1em 3em;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   .admin-layout {
