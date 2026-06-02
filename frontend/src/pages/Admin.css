@@ -783,9 +783,6 @@ svg {
 .admin-cell-prod-nombre {
   font-weight: 500;
   color: var(--color-espresso);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -953,3 +950,4 @@ svg {
     width: 100%;
   }
 }
+
