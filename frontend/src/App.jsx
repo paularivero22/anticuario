@@ -12,11 +12,13 @@ import SobreNosotros from './pages/SobreNosotros'
 import Contacto from './pages/Contacto'
 import Admin from './pages/Admin'
 import AdminProductoForm from './pages/AdminProductoForm'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/productos/:categoriaId" element={<Layout><Productos /></Layout>} />
