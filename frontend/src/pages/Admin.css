@@ -427,6 +427,12 @@ svg {
   color: var(--color-golden);
 }
 
+/* ===== SCROLL HORIZONTAL TABLA PRODUCTOS ===== */
+.admin-tabla-wrapper-prod {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 /* ===== CATEGORÍAS ===== */
 .admin-categoria-block {

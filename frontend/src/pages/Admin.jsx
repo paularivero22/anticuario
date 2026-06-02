@@ -1622,7 +1622,7 @@ function SeccionProductos() {
 
       {/* TABLA */}
       {cargando ? <p className="admin-cargando">Cargando...</p> : (
-        <div className="admin-tabla-wrapper">
+        <div className="admin-tabla-wrapper admin-tabla-wrapper-prod">
           <div className="admin-tabla-header admin-tabla-header-prod">
             {thS('id', 'ID')}
             {thS('nombre', 'Nombre')}
