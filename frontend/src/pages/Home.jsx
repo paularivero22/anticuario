@@ -64,8 +64,15 @@ export default function Home() {
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" strokeWidth="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
           <div>
             <p className="info-card-title">Ubicación</p>
-            <p className="info-card-text">Antigüedades Mortera, Calle...<br />Mortera, Cantabria</p>
-            <span className="link-underline link-underline-mt">Ver en Google Maps</span>
+            <p className="info-card-text">CA-303, 8<br />Mortera, Cantabria</p>
+            <a
+              href="https://maps.app.goo.gl/Fznr3DhbTT1CdKJq8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline link-underline-mt"
+            >
+              Ver en Google Maps
+            </a>
           </div>
         </div>
       </div>

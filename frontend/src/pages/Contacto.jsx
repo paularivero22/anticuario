@@ -26,8 +26,16 @@ export default function Contacto() {
 
           <div className="contacto-bloque">
             <p className="contacto-bloque-titulo">Dirección</p>
-            <p className="contacto-dato">Calle Ejemplo, 00</p>
+            <p className="contacto-dato">CA-303, 8</p>
             <p className="contacto-dato-sub">Mortera, Cantabria</p>
+            <a
+              href="https://maps.app.goo.gl/Fznr3DhbTT1CdKJq8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-google-maps"
+            >
+              Ver en Google Maps
+            </a>
           </div>
 
           <div className="contacto-bloque">
@@ -50,7 +58,7 @@ export default function Contacto() {
 
         </div>
 
-        {/* ===== MAPA ===== */}
+        {/* ===== MAPA E IMÁGENES ===== */}
         <div className="contacto-mapa-wrapper">
           <iframe
             className="contacto-mapa"
@@ -60,6 +68,13 @@ export default function Contacto() {
             referrerPolicy="no-referrer-when-downgrade"
             title="Ubicación Antigüedades Mortera"
           />
+          <div className="contacto-imagen-wrapper">
+            <img
+              src="/imagenes/contacto.webp"
+              alt="Antigüedades Mortera"
+              className="contacto-imagen"
+            />
+          </div>
         </div>
       </div>
     </div>
