@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     gap: 1.25em;
+    margin-top: 1.25em;
 }
 
 .search-box {
@@ -368,6 +369,56 @@
 .usuario-dropdown-logout:hover {
     background: #fdf0ef;
     color: #c0392b;
+}
+
+/* ===== BUSCADOR SUGERENCIAS ===== */
+.search-box {
+    position: relative;
+}
+
+.search-sugerencias {
+    position: absolute;
+    top: calc(100% + 0.5em);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--color-sand);
+    z-index: 100;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.search-sugerencia-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75em 1em;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border-light);
+    transition: background 0.15s;
+}
+
+.search-sugerencia-item:last-child {
+    border-bottom: none;
+}
+
+.search-sugerencia-item:hover {
+    background: var(--color-linen);
+}
+
+.search-sugerencia-nombre {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.875em;
+    color: var(--color-text);
+}
+
+.search-sugerencia-precio {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.813em;
+    color: var(--color-espresso);
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 1em;
 }
 
 /* ===== RESPONSIVE ===== */

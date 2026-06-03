@@ -9,27 +9,62 @@ export default function Header() {
     const [categoriaMovilAbierta, setCategoriaMovilAbierta] = useState(false)
     const [usuarioMenuAbierto, setUsuarioMenuAbierto] = useState(false)
     const [categorias, setCategorias] = useState([])
+    const [productos, setProductos] = useState([])
+    const [busqueda, setBusqueda] = useState('')
+    const [sugerencias, setSugerencias] = useState([])
+    const [busquedaAbierta, setBusquedaAbierta] = useState(false)
     const navigate = useNavigate()
     const { usuario, logout } = useAuth()
     const usuarioMenuRef = useRef(null)
+    const busquedaRef = useRef(null)
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/api/categorias`)
             .then(res => res.json())
             .then(data => setCategorias(data))
             .catch(err => console.error('Error al cargar categorías:', err))
+
+        fetch(`${import.meta.env.VITE_API_URL}/api/productos`)
+            .then(res => res.json())
+            .then(data => setProductos(data))
+            .catch(err => console.error('Error al cargar productos:', err))
     }, [])
 
-    // cerrar menu usuario al hacer click fuera
     useEffect(() => {
         const handleClickFuera = (e) => {
             if (usuarioMenuRef.current && !usuarioMenuRef.current.contains(e.target)) {
                 setUsuarioMenuAbierto(false)
             }
+            if (busquedaRef.current && !busquedaRef.current.contains(e.target)) {
+                setBusquedaAbierta(false)
+            }
         }
         document.addEventListener('mousedown', handleClickFuera)
         return () => document.removeEventListener('mousedown', handleClickFuera)
     }, [])
+
+    const handleBusqueda = (e) => {
+        const valor = e.target.value
+        setBusqueda(valor)
+        if (valor.trim().length < 2) {
+            setSugerencias([])
+            setBusquedaAbierta(false)
+            return
+        }
+        const filtrados = productos.filter(p =>
+            p.nombre.toLowerCase().includes(valor.toLowerCase())
+        ).slice(0, 6)
+        setSugerencias(filtrados)
+        setBusquedaAbierta(true)
+    }
+
+    const irAProducto = (id) => {
+        navigate(`/producto/${id}`)
+        setBusqueda('')
+        setSugerencias([])
+        setBusquedaAbierta(false)
+        setMenuMovilAbierto(false)
+    }
 
     const navegarCategoria = (id) => {
         navigate(`/productos/${id}`)
@@ -98,12 +133,33 @@ export default function Header() {
 
                 {/* Buscador e icono usuario */}
                 <div className="navbar-actions">
-                    <div className="search-box">
+                    <div className="search-box" ref={busquedaRef}>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
                             <circle cx="11" cy="11" r="8" />
                             <path d="M21 21l-4.35-4.35" />
                         </svg>
-                        <input className="search-input" placeholder="Buscar producto..." />
+                        <input
+                            className="search-input"
+                            placeholder="Buscar producto..."
+                            value={busqueda}
+                            onChange={handleBusqueda}
+                        />
+                        {busquedaAbierta && sugerencias.length > 0 && (
+                            <div className="search-sugerencias">
+                                {sugerencias.map(p => (
+                                    <div
+                                        key={p.id}
+                                        className="search-sugerencia-item"
+                                        onClick={() => irAProducto(p.id)}
+                                    >
+                                        <span className="search-sugerencia-nombre">{p.nombre}</span>
+                                        {p.precio != null && (
+                                            <span className="search-sugerencia-precio">{parseFloat(p.precio).toFixed(2)}€</span>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Menu usuario */}
@@ -208,13 +264,34 @@ export default function Header() {
                 </div>
 
                 {/* Buscador móvil */}
-                <div className="menu-movil-search">
+                <div className="menu-movil-search" ref={busquedaRef}>
                     <div className="search-box">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
                             <circle cx="11" cy="11" r="8" />
                             <path d="M21 21l-4.35-4.35" />
                         </svg>
-                        <input className="search-input" placeholder="Buscar producto..." />
+                        <input
+                            className="search-input"
+                            placeholder="Buscar producto..."
+                            value={busqueda}
+                            onChange={handleBusqueda}
+                        />
+                        {busquedaAbierta && sugerencias.length > 0 && (
+                            <div className="search-sugerencias">
+                                {sugerencias.map(p => (
+                                    <div
+                                        key={p.id}
+                                        className="search-sugerencia-item"
+                                        onClick={() => irAProducto(p.id)}
+                                    >
+                                        <span className="search-sugerencia-nombre">{p.nombre}</span>
+                                        {p.precio != null && (
+                                            <span className="search-sugerencia-precio">{parseFloat(p.precio).toFixed(2)}€</span>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

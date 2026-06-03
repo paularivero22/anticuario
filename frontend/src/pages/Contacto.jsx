@@ -54,14 +54,13 @@ export default function Contacto() {
         <div className="contacto-mapa-wrapper">
           <iframe
             className="contacto-mapa"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2896.0!2d-3.85!3d43.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDI3JzAwLjAiTiAzwrA1MScwMC4wIlc!5e0!3m2!1ses!2ses!4v1620000000000!5m2!1ses!2ses"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d486.34794443289286!2d-3.927970892441722!3d43.44492161725503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1780472443145!5m2!1ses!2ses"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Ubicación Antigüedades Mortera"
           />
         </div>
-
       </div>
     </div>
   )
