@@ -1,4 +1,3 @@
-
 .sn-page {
     background: var(--color-background);
     padding-bottom: 6em;
@@ -75,6 +74,12 @@
     overflow: hidden;
 }
 
+.sn-bloque-izquierda .sn-foto-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .sn-foto {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -88,6 +93,16 @@
     background-position: center;
     aspect-ratio: 16 / 9;
 }
+
+.sn-foto2 {
+    background-image: url('/imagenes/sobre-nosotros-2.webp');
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 2 / 3;
+    width: 100%;
+    max-width: 22em;
+}
+
 
 .sn-foto3 {
     background-image: url('/imagenes/sobre-nosotros-3.webp');
@@ -109,6 +124,7 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 56em) {
+
     .sn-bloque,
     .sn-bloque-derecha,
     .sn-bloque-izquierda {
