@@ -89,6 +89,13 @@
     aspect-ratio: 16 / 9;
 }
 
+.sn-foto3 {
+    background-image: url('/imagenes/sobre-nosotros-3.webp');
+    background-size: cover;
+    background-position: bottom;
+    aspect-ratio: 16 / 9;
+}
+
 /* placeholder mientras no hay foto real */
 .sn-foto-placeholder {
     background: var(--color-border-light);
