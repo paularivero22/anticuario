@@ -150,7 +150,7 @@ export default function Header() {
                                     <div
                                         key={p.id}
                                         className="search-sugerencia-item"
-                                        onClick={() => irAProducto(p.id)}
+                                        onMouseDown={() => irAProducto(p.id)}
                                     >
                                         <span className="search-sugerencia-nombre">{p.nombre}</span>
                                         {p.precio != null && (
@@ -282,7 +282,7 @@ export default function Header() {
                                     <div
                                         key={p.id}
                                         className="search-sugerencia-item"
-                                        onClick={() => irAProducto(p.id)}
+                                        onMouseDown={() => irAProducto(p.id)}
                                     >
                                         <span className="search-sugerencia-nombre">{p.nombre}</span>
                                         {p.precio != null && (
