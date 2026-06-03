@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><meta charset="UTF-8"><title>Alquiler solicitado</title></head>
+
 <body style="font-family: Georgia, serif; color: #1A0D06; max-width: 600px; margin: 0 auto; padding: 2em;">
     <h1 style="color: #5E3023; font-weight: 300; font-style: italic;">Antigüedades Mortera</h1>
     <hr style="border: none; border-top: 1px solid #C08552; margin-bottom: 2em;">
@@ -15,7 +16,8 @@
         <p style="margin: 0.5em 0 0;"><strong>Fecha de devolución:</strong> {{ \Carbon\Carbon::parse($alquiler->fecha_devolucion)->format('d/m/Y') }}</p>
         @endif
     </div>
-    <p>Nos pondremos en contacto contigo para confirmarlo.</p>
+    <p>Nos pondremos en contacto contigo para confirmarlo. Si tienes alguna duda puedes escribirnos a <a href="mailto:antiguedadesmortera@gmail.com" style="color: #5E3023;">antiguedadesmortera@gmail.com</a>.</p>
+    <p>Gracias por confiar en nosotros.</p>
     <p style="color: #7a5c4a; font-style: italic;">Antigüedades Mortera</p>
 </body>
 </html>

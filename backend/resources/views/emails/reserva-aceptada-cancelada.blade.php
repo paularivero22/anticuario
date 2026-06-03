@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><meta charset="UTF-8"><title>Estado de tu reserva</title></head>
+
 <body style="font-family: Georgia, serif; color: #1A0D06; max-width: 600px; margin: 0 auto; padding: 2em;">
     <h1 style="color: #5E3023; font-weight: 300; font-style: italic;">Antigüedades Mortera</h1>
     <hr style="border: none; border-top: 1px solid #C08552; margin-bottom: 2em;">
