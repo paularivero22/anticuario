@@ -27,9 +27,9 @@ class ExpirarReservas extends Command
     public function handle()
     {
         /* obtiene las reservas que no se hayan marcado como completadas (estado aceptada)
-        cuya fecha de recogida ha pasado (con margen de 24 horas) */
+        cuya fecha de recogida ha pasado */
         $reservas = Reserva::where('estado', 'aceptada')
-            ->where('fecha_recogida', '<', Carbon::yesterday())
+            ->where('fecha_recogida', '<', Carbon::today())
             ->get();
 
         foreach ($reservas as $reserva) {

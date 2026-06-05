@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            CategoriaSeeder::class,
-            SubcategoriaSeeder::class,
-            EpocaSeeder::class,
-            PaisSeeder::class,
-            UserSeeder::class,
-            ProductoSeeder::class,
+            // CategoriaSeeder::class,
+            // SubcategoriaSeeder::class,
+            // EpocaSeeder::class,
+            // PaisSeeder::class,
+            // UserSeeder::class,
+            // ProductoSeeder::class,
             // ImagenSeeder::class,
         ]);
     }

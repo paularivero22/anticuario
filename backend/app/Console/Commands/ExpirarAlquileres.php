@@ -30,7 +30,7 @@ class ExpirarAlquileres extends Command
         /* obtiene los alquileres que no se hayan marcado como recogidos (estado aceptado)
         cuya fecha de recogida ha pasado (con margen de 24 horas) */
         $expirados = Alquiler::where('estado', 'aceptado')
-            ->where('fecha_recogida', '<', Carbon::yesterday())
+            ->where('fecha_recogida', '<', Carbon::today())
             ->get();
 
         foreach ($expirados as $alquiler) {
