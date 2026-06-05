@@ -31,7 +31,7 @@ class RestrasarAlquileres extends Command
         se ha recogido el producto (estado recogido) y cuya fecha de recogida 
         ha pasado (con margen de 24 horas) */
         $retrasados = Alquiler::where('estado', 'recogido')
-            ->where('fecha_devolucion', '<', Carbon::yesterday())
+            ->where('fecha_devolucion', '<', Carbon::today())
             ->get();
 
         /* los alquileres se marcan automaticamente como retrasados 
