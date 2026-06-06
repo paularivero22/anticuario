@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Reserva;
 use App\Mail\ReservaNoRecogida;
+use App\Mail\ReservaNoRecogidaAdmin;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
@@ -21,6 +22,7 @@ class RecordarNoRecogidaReservas extends Command
             ->get();
         foreach ($reservas as $reserva) {
             Mail::to($reserva->usuario->email)->send(new ReservaNoRecogida($reserva));
+            Mail::to('antiguedadesmortera@gmail.com')->send(new ReservaNoRecogidaAdmin($reserva));
         }
         $this->info('Avisos de no recogida de reservas enviados: ' . $reservas->count());
     }

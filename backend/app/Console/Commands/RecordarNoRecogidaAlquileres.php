@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Console\Commands;
+
 use Illuminate\Console\Command;
 use App\Models\Alquiler;
 use App\Mail\AlquilerNoRecogido;
+use App\Mail\AlquilerNoRecogidoAdmin;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+
 class RecordarNoRecogidaAlquileres extends Command
 {
     protected $signature = 'alquileres:recordar-no-recogida';
@@ -18,6 +22,7 @@ class RecordarNoRecogidaAlquileres extends Command
             ->get();
         foreach ($alquileres as $alquiler) {
             Mail::to($alquiler->usuario->email)->send(new AlquilerNoRecogido($alquiler));
+            Mail::to('antiguedadesmortera@gmail.com')->send(new AlquilerNoRecogidoAdmin($alquiler));
         }
         $this->info('Avisos de no recogida de alquileres enviados: ' . $alquileres->count());
     }
