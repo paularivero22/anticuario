@@ -986,6 +986,18 @@ function SeccionReservas() {
                     </>
                   )}
                   {r.estado === 'aceptada' && (
+                    <>
+                      <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(r.id, 'completada')}>
+                        Completar
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-cancel" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(r.id, 'cancelada')}>
+                        Cancelar
+                      </button>
+                    </>
+                  )}
+                  {r.estado === 'expirada' && (
                     <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
                       onClick={() => cambiarEstado(r.id, 'completada')}>
                       Completar
@@ -1275,16 +1287,34 @@ function SeccionAlquileres() {
                     </>
                   )}
                   {a.estado === 'aceptado' && (
-                    <button className="admin-btn-accion admin-btn-accion-recogido" disabled={cargandoEste}
-                      onClick={() => cambiarEstado(a.id, 'recogido')}>
-                      Marcar recogido
-                    </button>
+                    <>
+                      <button className="admin-btn-accion admin-btn-accion-recogido" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'recogido')}>
+                        Marcar recogido
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-cancel" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'cancelado')}>
+                        Cancelar
+                      </button>
+                    </>
                   )}
                   {(a.estado === 'recogido' || a.estado === 'retrasado') && (
                     <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
                       onClick={() => cambiarEstado(a.id, 'completado')}>
                       Completar
                     </button>
+                  )}
+                  {a.estado === 'expirado' && (
+                    <>
+                      <button className="admin-btn-accion admin-btn-accion-recogido" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'recogido')}>
+                        Marcar recogido
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'completado')}>
+                        Completar
+                      </button>
+                    </>
                   )}
                 </div>
               </div>

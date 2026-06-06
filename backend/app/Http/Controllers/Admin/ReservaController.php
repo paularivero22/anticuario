@@ -34,7 +34,6 @@ class ReservaController extends Controller
         ]);
 
         $reserva = Reserva::with('producto')->findOrFail($id);
-        $estadoAnterior = $reserva->estado;
         $reserva->update(['estado' => $request->estado]);
 
         // actualizar estado del producto segun el estado de la reserva
