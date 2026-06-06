@@ -13,7 +13,7 @@ class RecordarNoRecogidaReservas extends Command
     {
         $ayer = Carbon::yesterday()->toDateString();
         $reservas = Reserva::with(['usuario', 'producto'])
-            ->where('estado', 'aceptada')
+            ->where('estado', 'expirada')
             ->where('fecha_recogida', $ayer)
             ->get();
         foreach ($reservas as $reserva) {

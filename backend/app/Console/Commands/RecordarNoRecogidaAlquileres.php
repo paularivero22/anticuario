@@ -13,7 +13,7 @@ class RecordarNoRecogidaAlquileres extends Command
     {
         $ayer = Carbon::yesterday()->toDateString();
         $alquileres = Alquiler::with(['usuario', 'producto'])
-            ->where('estado', 'aceptado')
+            ->where('estado', 'expirado')
             ->where('fecha_recogida', $ayer)
             ->get();
         foreach ($alquileres as $alquiler) {
