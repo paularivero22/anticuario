@@ -1305,10 +1305,16 @@ function SeccionAlquileres() {
                     </>
                   )}
                   {(a.estado === 'recogido' || a.estado === 'retrasado') && (
-                    <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
-                      onClick={() => cambiarEstado(a.id, 'completado')}>
-                      Completar
-                    </button>
+                    <>
+                      <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'completado')}>
+                        Completar
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-cancel" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'cancelado')}>
+                        Cancelar
+                      </button>
+                    </>
                   )}
                   {a.estado === 'expirado' && (
                     <>
