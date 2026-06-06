@@ -55,7 +55,7 @@ class AlquilerController extends Controller
 
             /* si el alquiler se cancela, se completa o expira la fecha de recogida el producto pasa a
         disponible (se verá en la pagina como disponible) */
-        } elseif (in_array($request->estado, ['cancelado', 'completado', 'expirado'])) {
+        } elseif (in_array($request->estado, ['cancelado', 'completado'])) {
             $alquiler->producto->update(['estado' => 'disponible']);
         }
 

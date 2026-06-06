@@ -998,10 +998,16 @@ function SeccionReservas() {
                     </>
                   )}
                   {r.estado === 'expirada' && (
-                    <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
-                      onClick={() => cambiarEstado(r.id, 'completada')}>
-                      Completar
-                    </button>
+                    <>
+                      <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(r.id, 'completada')}>
+                        Completar
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-cancel" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(r.id, 'cancelada')}>
+                        Cancelar
+                      </button>
+                    </>
                   )}
                 </div>
               </div>
@@ -1309,6 +1315,10 @@ function SeccionAlquileres() {
                       <button className="admin-btn-accion admin-btn-accion-recogido" disabled={cargandoEste}
                         onClick={() => cambiarEstado(a.id, 'recogido')}>
                         Marcar recogido
+                      </button>
+                      <button className="admin-btn-accion admin-btn-accion-cancel" disabled={cargandoEste}
+                        onClick={() => cambiarEstado(a.id, 'cancelado')}>
+                        Cancelar
                       </button>
                     </>
                   )}

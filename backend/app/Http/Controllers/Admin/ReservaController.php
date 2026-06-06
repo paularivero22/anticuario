@@ -45,7 +45,7 @@ class ReservaController extends Controller
             /* si la reserva se cancela o expira la fecha de recogida
         el producto pasa a disponible (se verá en la pagina) 
         Esto ultimo tambien se controla con el comando programado */
-        } elseif (in_array($request->estado, ['cancelada', 'expirada'])) {
+        } elseif (in_array($request->estado, ['cancelada'])) {
             $reserva->producto->update(['estado' => 'disponible']);
 
             /* si la reserva se completa (el cliente recoge y paga el producto) el producto 

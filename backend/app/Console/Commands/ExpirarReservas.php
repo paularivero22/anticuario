@@ -19,8 +19,6 @@ class ExpirarReservas extends Command
 
         foreach ($reservas as $reserva) {
             $reserva->update(['estado' => 'expirada']);
-            $reserva->producto->update(['estado' => 'disponible']);
-            Mail::to($reserva->usuario->email)->send(new ReservaAceptadaCancelada($reserva));
         }
 
         $this->info('Reservas expiradas: ' . $reservas->count());

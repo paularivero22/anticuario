@@ -19,8 +19,6 @@ class ExpirarAlquileres extends Command
 
         foreach ($expirados as $alquiler) {
             $alquiler->update(['estado' => 'expirado']);
-            $alquiler->producto->update(['estado' => 'disponible']);
-            Mail::to($alquiler->usuario->email)->send(new AlquilerAceptadoCancelado($alquiler));
         }
 
         $this->info('Alquileres expirados: ' . $expirados->count());
