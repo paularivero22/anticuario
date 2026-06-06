@@ -1310,10 +1310,6 @@ function SeccionAlquileres() {
                         onClick={() => cambiarEstado(a.id, 'recogido')}>
                         Marcar recogido
                       </button>
-                      <button className="admin-btn-accion admin-btn-accion-complete" disabled={cargandoEste}
-                        onClick={() => cambiarEstado(a.id, 'completado')}>
-                        Completar
-                      </button>
                     </>
                   )}
                 </div>
