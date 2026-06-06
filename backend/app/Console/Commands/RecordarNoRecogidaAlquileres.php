@@ -17,7 +17,7 @@ class RecordarNoRecogidaAlquileres extends Command
             ->where('fecha_recogida', $ayer)
             ->get();
         foreach ($alquileres as $alquiler) {
-            Mail::to('antiguedadesmortera@gmail.com')->send(new AlquilerNoRecogido($alquiler));
+            Mail::to($alquiler->usuario->email)->send(new AlquilerNoRecogido($alquiler));
         }
         $this->info('Avisos de no recogida de alquileres enviados: ' . $alquileres->count());
     }
